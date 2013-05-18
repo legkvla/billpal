@@ -1,0 +1,16 @@
+defaults: &defaults
+  oauth:
+    vk:
+      id: '3654198'
+      secret: '4mmhmh9oNVi0N6sR94f7'
+    facebook:
+      id: '3654198'
+      secret: '4mmhmh9oNVi0N6sR94f7'
+
+development:
+  <<: *defaults
+
+
+production:
+  <<: *defaults
+
