@@ -17,7 +17,7 @@ Billpal::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :payment_transfers do
+      resources :transfers do
 
       end
 

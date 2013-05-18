@@ -1,16 +1,16 @@
-class Api::V1::PaymentTransfersController < ApiController
+class Api::V1::TransfersController < ApiController
   before_filter :authenticate_user!
 
   def create
     if params[:contact_to_kind].present? && params[:contact_to_uid].present? && params[:amount].present? &&
         params[:payment_method].present?
 
-      payment_transfer = current_user.create_payment_transfer(
+      transfer = current_user.create_transfer(
           params[:amount],
           params[:contact_to_kind],
           params[:contact_to_uid],
           params[:payment_method])
-      if payment_transfer.valid?
+      if transfer.valid?
 
       else
         render json: {status: 'invalid payment data'}, status: 500

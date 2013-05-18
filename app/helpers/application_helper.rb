@@ -1,6 +1,6 @@
 module ApplicationHelper
   def hide_controls?
-    not current_user.present? or payment_controller?
+    !current_user.present? || payment_controller?
   end
 
   def payment_controller?
