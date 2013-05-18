@@ -76,6 +76,7 @@ angular
     (r) ->
       r.when '/dashboard',
         templateUrl: '/templates/bills.html'
+        controller: 'BillsController'
 
       r.when '/dashboard/transfers_in',
         templateUrl: '/templates/transfers_in.html'
@@ -109,6 +110,16 @@ angular
     ($scope, $location) ->
       $scope.activeClass = (path) ->
         active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+  ])
+  .factory('Bill', [
+    '$resource'
+    ($resource) ->
+      $resource(Routes.api_v1_bill_path(':id'))
+  ])
+  .controller('BillsController', [
+    '$scope'
+    ($scope) ->
+      #
   ])
   .controller('TransfersController', [
     '$scope'
