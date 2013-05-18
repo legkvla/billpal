@@ -4,6 +4,7 @@ Billpal::Application.routes.draw do
   devise_for :users
 
   resources :dashboard
+  resources :transfers
 
   namespace :management do
     check_for_admin = lambda { |request| request.env['warden'].authenticate? && request.env['warden'].user.admin? }
