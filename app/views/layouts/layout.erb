@@ -22,11 +22,12 @@
   <![endif]-->
 
   <%= javascript_include_tag  "application" %>
+  <%= javascript_include_tag  "angular/application" %>
 </head>
 
 
 
-<body>
+<body ng-app="billpal" ng-controller="RootController">
 <%= render partial: 'layouts/top_navigation' %>
 <%= render partial: 'layouts/side_navigation' %>
 
@@ -37,8 +38,8 @@
       <div class="area-top clearfix">
         <div class="pull-left header">
           <h3 class="title">
-            <i class="<%= crumbs[:secondary][:icon] %>"></i>
-            <%= crumbs[:secondary][:label] %>
+            <i class="icon-dashboard"></i>
+            Dashboard
           </h3>
           <h5>
             A subtitle can be added here
@@ -49,17 +50,17 @@
 
           <li class="sparkline-row">
             <h4 class="blue"><span>Orders</span> 847</h4>
-            <div class="sparkline big" data-color="blue"><!--<%= random_numbers(12).join(",") %>--></div>
+            <div class="sparkline big" data-color="blue"><!--10,14,20,21,18,13,24,14,6,7,28,24--></div>
           </li>
 
           <li class="sparkline-row">
             <h4 class="green"><span>Reviews</span> 223</h4>
-            <div class="sparkline big" data-color="green"><!--<%= random_numbers(12).join(",") %>--></div>
+            <div class="sparkline big" data-color="green"><!--8,11,26,14,27,28,8,13,10,22,6,15--></div>
           </li>
 
           <li class="sparkline-row">
             <h4 class="red"><span>New visits</span> 7930</h4>
-            <div class="sparkline big"><!--<%= random_numbers(12).join(",") %>--></div>
+            <div class="sparkline big"><!--7,3,24,18,24,3,4,9,16,24,16,29--></div>
           </li>
 
         </ul>
@@ -78,18 +79,11 @@
           <span class="breadcrumb-arrow"><span></span></span>
         </div>
 
-        <% if link_level == 2 %>
-            <div class="breadcrumb-button">
-              <span class="breadcrumb-label">
-                <i class="<%= crumbs[:primary][:icon] %>"></i> <%= crumbs[:primary][:label] %>
-              </span>
-              <span class="breadcrumb-arrow"><span></span></span>
-            </div>
-        <% end %>
+
 
         <div class="breadcrumb-button">
           <span class="breadcrumb-label">
-            <i class="<%= crumbs[:secondary][:icon] %>"></i> <%= crumbs[:secondary][:label] %>
+            <i class="icon-dashboard"></i> Dashboard
           </span>
           <span class="breadcrumb-arrow"><span></span></span>
         </div>
