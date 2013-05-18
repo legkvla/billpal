@@ -16,6 +16,9 @@ angular
     '$scope'
     '$resource'
     ($scope, $resource) ->
+      paysioKey = null
+      $scope.setPaysioKey = (key) -> paysioKey = key
+
       $scope.step = 'verificatePhone'
       $scope.data = {}
 
@@ -41,7 +44,22 @@ angular
             $scope.phoneNotVerified = response.data.status
 
       $scope.checkReceiverContacts = ->
-        # TODO
+        $resource(Routes.api_v1_transfers_path()).save
+          payment_method: 'test'
+          amount: $scope.data.charge_amount
+          contact_to_kind: $scope.data.contact_type
+          contact_to_uid: $scope.data["contact_#{$scope.data.contact_type}"]
+          phone_number: $scope.data.phone_number
+          (response) ->
+            $scope.contactsNotChecked = null
+            #$scope.verificationCodeSent = true
+            $scope.step = 'paysioRequest'
+
+            Paysio.setPublishableKey(paysioKey)
+            Paysio.form.build($('<form />'), { charge_id: response.data.charge_id });
+          (response) ->
+            $scope.contactsNotChecked = response.data.status
+
 
   ])
 
