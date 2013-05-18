@@ -15,7 +15,7 @@
 /tmp
 
 # Ignore config files
-config/database.yml #DON'T DO THIS!!!!!!!!!!!!!!!!!!
+config/database.yml
 
 # Ignore idea files
 /.idea
