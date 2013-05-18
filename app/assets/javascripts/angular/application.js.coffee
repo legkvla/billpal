@@ -76,18 +76,23 @@ angular
     (r) ->
       r.when '/dashboard',
         templateUrl: '/templates/bills.html'
+        controller: 'BillsController'
 
       r.when '/dashboard/transfers_in',
         templateUrl: '/templates/transfers_in.html'
+        controller: 'TransfersController'
 
       r.when '/dashboard/transfers_out',
         templateUrl: '/templates/transfers_out.html'
+        controller: 'TransfersController'
 
       r.when '/dashboard/people',
         templateUrl: '/templates/people.html'
+        controller: 'PeopleController'
 
       r.when '/dashboard/bill_templates',
         templateUrl: '/templates/bill_templates.html'
+        controller: 'BillTemplatesController'
 
       r.when '/:any',
         template: '<h5>Загрузка</h5>'
@@ -105,4 +110,29 @@ angular
     ($scope, $location) ->
       $scope.activeClass = (path) ->
         active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+  ])
+  .factory('Bill', [
+    '$resource'
+    ($resource) ->
+      $resource(Routes.api_v1_bill_path(':id'))
+  ])
+  .controller('BillsController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('TransfersController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('PeopleController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('BillTemplatesController', [
+    '$scope'
+    ($scope) ->
+      #
   ])
