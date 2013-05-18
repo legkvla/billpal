@@ -36,7 +36,10 @@ Billpal::Application.routes.draw do
         end
       end
 
-      resources :bills
+      resources :bills do
+        resources :items, namespace: :bills
+      end
+
       resources :contacts
 
       # Verificators

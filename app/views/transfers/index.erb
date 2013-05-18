@@ -4,7 +4,7 @@
 <div class="span6 offset3"
      ng-app="transfers"
      ng-controller="TransfersController"
-     ng-init="setPaysioKey(<%= Settings.paysio.key.to_json %>)"
+     ng-init="setPaysioKey(<%= Settings.paysio.key.to_json %>); <%= %<setStep('checkReceiverContacts')> if user_signed_in? %>"
 >
 
   <div class="padded">
