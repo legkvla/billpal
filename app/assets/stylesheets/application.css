@@ -53,4 +53,145 @@
 *= require responsive480
 */
 
+/* div class error */
 .error { background-color: #b94a48;-webkit-border-radius: 3px;-moz-border-radius: 3px; border-radius: 3px;display: inline-block;padding: 2px 4px;font-size: 11.844px;font-weight: bold;line-height: 14px;color: #ffffff;text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);white-space: nowrap;vertical-align: baseline; }
+
+/* people */
+		.inline-block {
+			display: inline-block;
+		}
+
+			.fancy {
+				line-height: 0.5;
+				text-align: center;
+			}
+
+				.fancy span {
+					display: inline-block;
+					position: relative;
+				}
+
+				.fancy span:before,
+				.fancy span:after {
+					content: "";
+					position: absolute;
+					height: 5px;
+					border-bottom: 1px solid #eee;
+					border-top: 1px solid #eee;
+					top: 0;
+					width: 100%;
+				}
+
+				.fancy span:before {
+					right: 100%;
+					margin-right: 5px;
+				}
+
+				.fancy span:after {
+					left: 100%;
+					margin-left: 5px;
+				}
+
+
+		.grid-fluid {
+			padding: 0;
+			position: relative;
+			width: 100%;
+		}
+
+		.grid-fluid .block {
+			position: relative;
+			float: left;
+			overflow: hidden;
+			width: 16.6666667%; /* Fallback */
+			width: -webkit-calc(100% / 4);
+			width: calc(100% / 4);
+			margin: 0px 20px 20px 0px;
+		}
+
+		.contact-card {
+			background: rgb(255, 255, 255);
+			padding: 10px;
+			border: 1px solid rgb(216, 216, 216);
+		}
+
+			.contact-card .expanded {
+				display: none;
+			}
+
+				.contact-card .expanded.active {
+					display: inline-block;
+				}
+
+			.contact-card h4 {
+				font-weight: normal;
+				margin-left: 10px;
+				vertical-align: middle;
+				cursor: pointer;
+			}
+
+			.contact-card .fancy {
+				font-size: 1.3em;
+				font-weight: normal;
+				font-style: italic;
+			}
+
+			.contact-card .contacts {
+				margin: 20px 0;
+			}
+
+				.contact-card .contacts p {
+					margin: 0;
+					font-size: 1.1em;
+				}
+
+				.contact-card .controls {
+					margin: 20px 0;
+					text-align: center;
+				}
+
+		@media screen and (max-width: 1190px) {
+			.grid-fluid .box {
+				width: 20%; /* Fallback */
+				width: -webkit-calc(100% / 2);
+				width: calc(100% / 2);
+			}
+		}
+
+		@media screen and (max-width: 945px) {
+			.grid-fluid .box {
+				width: 25%; /* Fallback */
+				width: -webkit-calc(100% / 4);
+				width: calc(100% / 4);
+			}
+		}
+
+		@media screen and (max-width: 660px) {
+			.grid-fluid .box {
+				width: 33.3333333%; /* Fallback */
+				width: -webkit-calc(100% / 3);
+				width: calc(100% / 3);
+			}
+		}
+
+		@media screen and (max-width: 660px) {
+			.grid-fluid .box {
+				width: 33.3333333%; /* Fallback */
+				width: -webkit-calc(100% / 3);
+				width: calc(100% / 3);
+			}
+		}
+
+		@media screen and (max-width: 400px) {
+			.grid-fluid .box {
+				width: 50%; /* Fallback */
+				width: -webkit-calc(100% / 2);
+				width: calc(100% / 2);
+			}
+		}
+
+		@media screen and (max-width: 300px) {
+			.grid-fluid .box {
+				width: 100%;
+			}
+		}

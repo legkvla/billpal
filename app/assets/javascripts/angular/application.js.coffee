@@ -66,6 +66,10 @@ angular
         templateUrl: '/templates/transfers_out.html'
         controller: 'TransfersController'
 
+      r.when '/dashboard/people',
+        templateUrl: '/templates/people.html'
+        controller: 'PeopleController'
+
   ])
   .controller('RootController', [
     '$scope'
@@ -75,6 +79,11 @@ angular
         active: if path.join? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
   ])
   .controller('TransfersController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('PeopleController', [
     '$scope'
     ($scope) ->
       #

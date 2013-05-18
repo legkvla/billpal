@@ -1,0 +1,84 @@
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="area-top clearfix">
+					<div class="pull-left header">
+						<h3 class="title">
+							<i class="icon-th-large"></i>
+							Contacts
+						</h3>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid-fluid" id="grid-example">
+				<div class="block" id="contact-example">
+					<div class="contact-card">
+						<div class="header">
+							<span class="avatar">
+								<img src="http://www.gravatar.com/avatar/2d5ffee06db989350a295fd8e537e81b?s=50" alt="">
+							</span>
+							<h4 class="inline-block">
+								Eugene Rodionov
+							</h4>
+						</div>
+						<div class="expanded">
+							<h5 class="fancy">
+								<span>Google, Inc.</span>
+							</h5>
+
+							<div class="controls">
+								<button class="btn btn-mini btn-default">Edit</button> <button class="btn btn-mini btn-green">Send invoice</button> <button class="btn btn-mini btn-green">Send transfer</button>
+							</div>
+
+							<hr>
+
+							<div class="contacts">
+								<span class="email pull-left">wat@theaqua.name</span>
+								<span class="phone pull-right">+7 (123) 456-76-32</span>
+								<div class="clearfix"></div>
+							</div>
+						<!--	<div class="notes">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, amet, aspernatur, consequuntur, corporis incidunt laudantium nobis a impedit placeat nihil pariatur ducimus. Corporis, tenetur quaerat laudantium voluptate accusantium maiores nobis!
+							</div> -->
+
+
+							<div class="history">
+								<h5>History</h5>
+								<table class="table">
+									<tr>
+										<td width="2%">
+											<i class="icon-circle-arrow-left"></i>
+										</td>
+										<td>11/12/13</td>
+										<td>700p</td>
+									</tr>
+									<tr>
+										<td colspan="3" style="border-top: none; padding: 0px 8px 8px"><em>Получен трансфер с комментарием «из тебя фрилансер как из Лебедева дизайнер»</em></td>
+									</tr>
+									<tr>
+										<td>
+											<i class="icon-circle-arrow-right"></i>
+										</td>
+										<td>11/12/13</td>
+										<td>700p</td>
+									</tr>
+									<tr>
+										<td colspan="3" style="border-top: none; padding: 0px 8px"><em>Выставлен инвойс с комментарием «я закончил твою херню»</em></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	<script>
+		for( var i = 0; i < 10; i++ ) {
+			$( '#contact-example' ).clone( ).appendTo( '#grid-example' )
+		}
+
+		$( '.contact-card .header' ).click( function( ) {
+			$( this ).siblings( '.expanded' ).slideToggle( 300 );
+		});
+	</script>
