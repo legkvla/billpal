@@ -70,13 +70,18 @@ angular
         templateUrl: '/templates/people.html'
         controller: 'PeopleController'
 
+      r.when '/dashboard/invoice_templates',
+        templateUrl: '/templates/invoice_templates.html'
+        controller: 'InvoiceTemplatesController'
+
+
   ])
   .controller('RootController', [
     '$scope'
     '$location'
     ($scope, $location) ->
       $scope.activeClass = (path) ->
-        active: if path.join? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+        active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
   ])
   .controller('TransfersController', [
     '$scope'
@@ -84,6 +89,11 @@ angular
       #
   ])
   .controller('PeopleController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('InvoiceTemplatesController', [
     '$scope'
     ($scope) ->
       #
