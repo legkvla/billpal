@@ -93,8 +93,8 @@ angular
         templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
-      r.when '/transfers',
-        template: '<span></span>'
+      r.when '/:any',
+        template: '<h5>Загрузка</h5>'
         controller: 'RedirectController'
 
   ])
