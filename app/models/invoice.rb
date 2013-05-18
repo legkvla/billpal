@@ -8,6 +8,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :from_user, class_name: 'User'
 
   has_many :payments, as: :paymentable, uniq: true
+  has_many :withdrawals, as: :withdrawable, uniq: true
 
   monetize :amount_cents, as: :amount
 

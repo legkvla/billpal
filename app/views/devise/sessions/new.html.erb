@@ -48,10 +48,10 @@
 
         <div class="row-fluid">
           <div class="span4">
-            <a href="#" class="btn btn-facebook btn-block"><i class="icon-facebook-sign"></i> Facebook</a>
+            <a href="<%= user_omniauth_authorize_url(:facebook) %>" class="btn btn-facebook btn-block"><i class="icon-facebook-sign"></i> Facebook</a>
           </div>
           <div class="span4">
-            <a href="#" class="btn btn-twitter btn-block"><i class="icon-twitter"></i> Twitter</a>
+            <a href="<%= user_omniauth_authorize_url(:twitter) %>" class="btn btn-twitter btn-block"><i class="icon-twitter"></i> Twitter</a>
           </div>
           <div class="span4">
             <a href="<%= user_omniauth_authorize_url(:vkontakte) %>" class="btn btn-vkontakte btn-block"><i class="icon-vkontakte"></i> Vkontakte</a>
