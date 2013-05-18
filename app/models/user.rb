@@ -69,8 +69,6 @@ class User < ActiveRecord::Base
         payment
       end
     end
-  end
-    payment
 	end
 
 	protected
