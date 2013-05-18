@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def detect_layout
-    if self.is_a?(DeviseController) || payment_controller?
+    if self.is_a?(DeviseController)
       'only_topbar'
     else
       'layout'
