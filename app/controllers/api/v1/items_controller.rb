@@ -7,9 +7,7 @@ class Api::V1::ItemsController < ApiController
     if item.save
       redirect_to api_v1_bill_item_path(@user_bill, item)
     else
-      render json: {
-          errors: item.errors.as_json
-      }
+      format_errors(item.errors.as_json)
     end
   end
 
@@ -19,9 +17,7 @@ class Api::V1::ItemsController < ApiController
     if item.update_attributes(params[:item])
       redirect_to api_v1_bill_item_path(@user_bill, item)
     else
-      render json: {
-          errors: item.errors.as_json
-      }
+      format_errors item.errors.as_json
     end
   end
 

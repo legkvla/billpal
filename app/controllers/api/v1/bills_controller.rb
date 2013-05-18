@@ -6,9 +6,7 @@ class Api::V1::BillsController < ApiController
     if bill.save
       redirect_to api_v1_bill_path(bill)
     else
-      render json: {
-          errors: bill.errors.as_json
-      }
+      format_errors bill.errors.as_json
     end
   end
 
@@ -18,9 +16,7 @@ class Api::V1::BillsController < ApiController
     if bill.update_attributes(params[:bill])
       redirect_to(api_v1_bill_path(bill))
     else
-      render json: {
-          errors: bill.errors.as_json
-      }
+      format_errors bill.errors.as_json
     end
   end
 

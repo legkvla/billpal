@@ -18,4 +18,8 @@ class ApiController < ApplicationController
       raise exception
     end
   end
+
+  def format_errors errors
+    render json: {errors: errors}, status: :bad_request
+  end
 end
