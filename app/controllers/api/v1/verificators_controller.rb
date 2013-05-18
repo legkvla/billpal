@@ -15,6 +15,8 @@ class Api::V1::VerificatorsController < ApiController
 
         render json: {status: 'ok'}
       end
+    else
+      render json: {status: 'invalid phone number'}, status: 500
     end
   end
 
