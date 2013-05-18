@@ -22,11 +22,12 @@
   <![endif]-->
 
   <%= javascript_include_tag  "application" %>
+  <%= javascript_include_tag  "angular/application" %>
 </head>
 
 
 
-<body>
+<body ng-app="billpal" ng-controller="RootController">
 <%= render partial: 'layouts/top_navigation' %>
 <%= render partial: 'layouts/side_navigation' %>
 

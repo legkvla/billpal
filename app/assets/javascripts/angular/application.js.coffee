@@ -12,12 +12,18 @@ angular
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = meta.content if meta.name == 'csrf-token'
   ])
   .config([
-      '$locationProvider',
-      ($locationProvider) ->
-        $locationProvider.html5Mode true
+    '$locationProvider',
+    ($locationProvider) ->
+      $locationProvider.html5Mode true
   ])
   .config([
     '$routeProvider',
     ($routeProvider) ->
+      #
+      #
+  ])
+  .controller('RootController', [
+    '$scope'
+    ($scope) ->
       #
   ])
