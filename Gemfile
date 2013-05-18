@@ -29,6 +29,7 @@ gem 'omniauth-oauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'oa-oauth'
 
 gem 'cancan'
@@ -88,5 +89,7 @@ gem 'ox'
 gem 'multi_xml'
 
 gem 'nokogiri'
+
+gem 'uuidtools'
 
 

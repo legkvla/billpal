@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   protect_from_forgery
 
   before_filter :set_git_version
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def detect_layout
-    if devise_controller?
+    if devise_controller? or payment_controller?
       'only_topbar'
     else
       'layout'
