@@ -16,6 +16,9 @@ angular
     '$scope'
     '$resource'
     ($scope, $resource) ->
+      paysioKey = null
+      $scope.setPaysioKey = (key) -> paysioKey = key
+
       $scope.step = 'verificatePhone'
       $scope.data = {}
 
@@ -41,7 +44,22 @@ angular
             $scope.phoneNotVerified = response.data.status
 
       $scope.checkReceiverContacts = ->
-        # TODO
+        $resource(Routes.api_v1_transfers_path()).save
+          payment_method: 'test'
+          amount: $scope.data.charge_amount
+          contact_to_kind: $scope.data.contact_type
+          contact_to_uid: $scope.data["contact_#{$scope.data.contact_type}"]
+          phone_number: $scope.data.phone_number
+          (response) ->
+            $scope.contactsNotChecked = null
+            #$scope.verificationCodeSent = true
+            $scope.step = 'paysioRequest'
+
+            Paysio.setPublishableKey(paysioKey)
+            Paysio.form.build($('<form />'), { charge_id: response.charge_id });
+          (response) ->
+            $scope.contactsNotChecked = response.data.status
+
 
   ])
 
@@ -56,7 +74,7 @@ angular
     '$routeProvider',
     (r) ->
       r.when '/dashboard',
-        templateUrl: '/templates/invoices.html'
+        templateUrl: '/templates/bills.html'
 
       r.when '/dashboard/transfers_in',
         templateUrl: '/templates/transfers_in.html'
@@ -70,13 +88,18 @@ angular
         templateUrl: '/templates/people.html'
         controller: 'PeopleController'
 
+      r.when '/dashboard/bill_templates',
+        templateUrl: '/templates/bill_templates.html'
+        controller: 'BillTemplatesController'
+
+
   ])
   .controller('RootController', [
     '$scope'
     '$location'
     ($scope, $location) ->
       $scope.activeClass = (path) ->
-        active: if path.join? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+        active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
   ])
   .controller('TransfersController', [
     '$scope'
@@ -84,6 +107,11 @@ angular
       #
   ])
   .controller('PeopleController', [
+    '$scope'
+    ($scope) ->
+      #
+  ])
+  .controller('BillTemplatesController', [
     '$scope'
     ($scope) ->
       #

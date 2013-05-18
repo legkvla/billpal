@@ -34,16 +34,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 		case provider
 			when "Facebook"
 				uid = access_token['uid']
-				email = access_token['extra']['user_hash']['email']
-				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => nil, :name => access_token['extra']['user_hash']['name'], :link => access_token['extra']['user_hash']['link'] }
+				email = access_token['info']['email']
+				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => nil, :name => access_token['info']['name'], :link => access_token['info']['urls']['Facebook'] }
 			when "Twitter"
-				uid = access_token['extra']['user_hash']['id']
-				name = access_token['user_info']['name']
-				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => access_token['credentials']['secret'], :name => name, :link => "http://twitter.com/#{name}" }
+				uid = access_token['uid']
+				name = access_token['info']['name']
+				nickname = access_token['info']['nickname']
+				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => access_token['credentials']['secret'], :name => name, :link => "http://twitter.com/#{nickname}" }
 			when 'Vkontakte'
 				uid = access_token['uid']
-				name = access_token['user_info']['name']
-				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => access_token['credentials']['secret'], :name => name, :link => access_token['user_info']['public_profile_url'] }
+				name = access_token['info']['name']
+				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :name => name, :link => access_token['info']['urls']['Vkontakte'] }
 			else
 				raise 'Provider #{provider} not handled'
 		end
@@ -93,7 +94,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			user
 		else
 			user = User.new(:name => name, :password => Devise.friendly_token[0,20], :email => "#{UUIDTools::UUID.random_create}@host")
-			user.save false
+			user.save(:validate => false)
 		end
 		return user
 	end
