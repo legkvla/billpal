@@ -1,7 +1,7 @@
 class PaymentInvoice < ActiveRecord::Base
   include Payments::Validations
 
-  belongs_to :invoiceable
+  belongs_to :invoiceable, polymorphic: true
 
   has_many :payments, uniq: true
 

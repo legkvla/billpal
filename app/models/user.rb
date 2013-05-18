@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-				 :trackable, :validatable, :confirmable, :omniauthable
+				 :trackable, :validatable, :omniauthable
 
 	attr_accessible :email, :name, :password, :password_confirmation, :remember_me
 
 	has_many :authorizations, :dependent => :destroy
   has_many :contacts, uniq: true
-  has_many :payment_transfers, uniq: true
+  has_many :payment_transfers, foreign_key: :from_user_id, uniq: true
   has_many :payment_invoices, foreign_key: :from_user_id, uniq: true
   has_many :payments, uniq: true
   has_many :balances, uniq: true
@@ -24,15 +24,15 @@ class User < ActiveRecord::Base
     self.balances.where(currency_cd: Balance.currencies(:rub)).first
   end
 
-  def contract
-    @contract ||= self.contracts.where(kind_cd: Contact.kinds(:internal), uid: self.id).first if self.persisted?
+  def contact
+    @contact ||= self.contacts.where(kind_cd: Contact.kinds(:internal), uid: self.id.to_s).first if self.persisted?
   end
 
   def create_payment_transfer amount, contact_to_kind, contact_to_uid, payment_method
     amount = amount.to_money
 
-    contact = Contact.find(uid: contact_to_uid, kind_cd: Contact.kinds(contact_to_kind)).first
-    unless contact.present?
+    contract_to = Contact.where(kind_cd: Contact.kinds(contact_to_kind), uid: contact_to_uid).first
+    unless contract_to.present?
       contract_to = Contact.create_with_user(contact_to_kind, contact_to_uid)
     end
 

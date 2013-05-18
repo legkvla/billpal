@@ -1,0 +1,1 @@
+Paysio.api_key = Settings.paysio.secret

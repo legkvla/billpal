@@ -22,6 +22,6 @@ class Contact < ActiveRecord::Base
             role: 'anonymous'
         }, without_protection: true)
 
-    new_user.contacts.create!({kind: kind, uid: uid}, without_protection: true)
+    new_user.contacts.create!({kind_cd: Contact.kinds(kind), uid: uid}, without_protection: true)
   end
 end
