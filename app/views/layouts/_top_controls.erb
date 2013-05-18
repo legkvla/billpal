@@ -2,13 +2,12 @@
 
     <div class="nav-collapse nav-collapse-top collapse">
 
+      <% if current_user.present? %>
       <ul class="nav full pull-right">
-
         <li class="dropdown user-avatar" ng-class="{ open: profileDropdownOpen }">
 
           <!-- the dropdown has a custom user-avatar class, this is the small avatar with the badge -->
 
-          <% if current_user.present? %>
           <a href="#" class="dropdown-toggle" ng-click="profileDropdownOpen = !profileDropdownOpen">
                   <span>
                     <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-caret-down"></i></span>
@@ -17,13 +16,11 @@
                     <% end %>
                   </span>
           </a>
-          <% end %>
 
           <ul class="dropdown-menu">
 
             <!-- the first element is the one with the big avatar, add a with-image class to it -->
 
-            <% if current_user.present? %>
             <!--<li class="with-image">-->
               <!--<div class="avatar">-->
                 <!--<%= image_tag gravatar_url(current_user.email, 32) %>-->
@@ -32,7 +29,6 @@
             <!--</li>-->
 
             <!--<li class="divider"></li>-->
-            <% end %>
 
             <li><a href="#"><i class="icon-user"></i> <span>Profile</span></a></li>
             <li><a href="#"><i class="icon-cog"></i> <span>Settings</span></a></li>
@@ -40,15 +36,16 @@
               <a href="#">
                 <i class="icon-envelope"></i>
                 <span>Messages</span>
-                <% if current_user.present? && current_user.notifications_count > 0 %>
+                <% if current_user.notifications_count > 0 %>
                     <span class="label label-dark-red pull-right"><%= current_user.notifications_count %></span>
                 <% end %>
               </a>
             </li>
-            <li><a href="<%= destroy_user_session_path %>" data-method="delete"><i class="icon-off"></i> <span>Logout</span></a></li>
+            <li><a href="<%= destroy_user_session_path %>"><i class="icon-off"></i> <span>Logout</span></a></li>
           </ul>
         </li>
       </ul>
+      <% end %>
 
       <form class="navbar-search pull-right">
         <input type="text" class="search-query animated" placeholder="Search">
