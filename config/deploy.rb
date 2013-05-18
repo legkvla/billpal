@@ -28,6 +28,7 @@ namespace :deploy do
   desc "Restart Application"
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
+    run "sudo monit restart sidekiq"
   end
 
   desc "Symlink shared configs and folders on each release."
