@@ -54,11 +54,11 @@ class User < ActiveRecord::Base
 
       if payment.valid? && transfer.save && payment.save
         charge = Paysio::Charge.create(
-            amount: amount.to_f,
+            amount: amount.to_f.round, #FIX: for paysio
             payment_system_id: payment_method,
-            description: "PaymentTransfer##{payment_transfer.id}")
+            description: "PaymentTransfer##{payment.id}")
 
-        payment.update_column({uid: charge.id}, without_protection: true)
+        payment.update_column(:uid, charge.id)
         payment
       end
     end

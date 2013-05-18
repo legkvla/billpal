@@ -3,11 +3,10 @@ class Payment < ActiveRecord::Base
 
   belongs_to :paymentable, polymorphic: true
 
-  as_enum :kind, credit_card: 0, phone: 1
-  as_enum :payment_kind, paysio: 9000
+  as_enum :kind, credit_card: 0, phone: 1, test: 9_999_999
+  as_enum :payment_kind, paysio: 9_000
 
   monetize :amount_cents, as: :amount
 
   validate :amount_greater_that_zero
-  validate :receiver_cant_be_sender
 end
