@@ -1,9 +1,12 @@
 require 'sidekiq/web'
 
 Billpal::Application.routes.draw do
-  devise_for :users
+
+	devise_for :users, :path => 'accounts',
+						 :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks', :registrations => 'registrations' }
 
   resources :dashboard
+  resources :transfers
 
   namespace :management do
     check_for_admin = lambda { |request| request.env['warden'].authenticate? && request.env['warden'].user.admin? }
