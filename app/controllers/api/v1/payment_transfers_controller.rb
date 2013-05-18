@@ -1,8 +1,7 @@
 class Api::V1::PaymentTransfersController < ApiController
-  def create
-    if current_user.present?
-    else
+  before_filter :authenticate_user!
 
-    end
+  def create
+
   end
 end

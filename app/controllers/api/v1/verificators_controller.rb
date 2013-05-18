@@ -33,7 +33,16 @@ class Api::V1::VerificatorsController < ApiController
           scope = if current_user.present?
                     current_user.contacts.scoped
                   else
-                    Contact.scoped
+                    password = "#{SecureRandom.hex}_#{(Random.rand(8_999_999) + 1_000_000)}"
+                    new_user = User.create!({
+                        email: "#{SecureRandom.hex}@internal.anonymous",
+                        password: password,
+                        password_confirmation: password
+                    }, without_protection: true)
+
+                    sign_in(new_user)
+
+                    new_user.contacts.scoped
                   end
 
           scope.create!({kind: :internal, uid: phone_number}, without_protection: true)
