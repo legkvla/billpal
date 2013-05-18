@@ -30,7 +30,6 @@ gem 'omniauth-oauth2'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook'
 gem 'oa-oauth'
-gem 'omniauth-mailru'
 
 gem 'cancan'
 
