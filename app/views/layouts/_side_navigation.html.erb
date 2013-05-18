@@ -8,27 +8,20 @@
   <ul class="nav nav-collapse collapse nav-collapse-primary">
 
 
-
-
-
-    <li class="active">
+    <li ng-class="activeClass('/dashboard')">
       <span class="glow"></span>
-      <a href="#">
-        <i class="icon-dashboard icon-2x"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-    <li class="active">
-      <span class="glow"></span>
-      <a href="#">
+      <a href="/dashboard">
         <i class="icon-dashboard icon-2x"></i>
         <span>Инвойсы</span>
       </a>
     </li>
 
-    <li class="dark-nav ">
+    <li class="dark-nav" ng-class="activeClass(['/dashboard/transfers_out', '/dashboard/transfers_in'])">
       <span class="glow"></span>
-      <a class="accordion-toggle collapsed " data-toggle="collapse" href="#zwz2Ux5SfP">
+      <a class="accordion-toggle"
+         ng-class="{ collapsed: transfersCollapsed }"
+         ng-click="transfersCollapsed = !transfersCollapsed"
+      >
         <i class="icon-beaker icon-2x"></i>
         <span>
           Переводы
@@ -36,22 +29,24 @@
         </span>
       </a>
       <ul 
-      id="zwz2Ux5SfP" class="collapse ">
+          class="collapse"
+          ng-class="{ in: !transfersCollapsed }"
+      >
 
-      <li class="">
+      <li ng-class="">
         <a href="#">
           <i class="icon-hand-up"></i> Новый
         </a>
       </li>
 
-      <li class="">
-        <a href="#">
+      <li ng-class="activeClass('/dashboard/transfers_out')">
+        <a ng-href="/dashboard/transfers_out">
           <i class="icon-hand-up"></i> Исходящие
         </a>
       </li>
 
-      <li class="">
-        <a href="#">
+      <li ng-class="activeClass('/dashboard/transfers_in')">
+        <a ng-href="/dashboard/transfers_in">
           <i class="icon-beaker"></i> Входящие
         </a>
       </li>

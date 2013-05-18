@@ -3,4 +3,8 @@ class DashboardController < ApplicationController
 
   def index
   end
+
+  def templates
+    render action: params[:id]
+  end
 end
