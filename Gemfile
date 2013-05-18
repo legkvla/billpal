@@ -93,3 +93,5 @@ gem 'nokogiri'
 gem 'uuidtools'
 
 gem 'unicorn'
+
+gem 'awesome_print', :require => 'ap'

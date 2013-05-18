@@ -22,6 +22,7 @@
 # Ignore idea files
 /.idea
 
+/vendor/bundle
 .DS_Store
 
 /app/assets/javascripts/routes.js

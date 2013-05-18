@@ -70,4 +70,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+    payment
+	end
+
+	protected
+	def confirmation_required?
+		false
+	end
 end
