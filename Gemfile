@@ -58,6 +58,8 @@ gem 'settingslogic'
 gem 'state_machine'
 gem 'state_machine-audit_trail'
 
+gem 'paysio'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
