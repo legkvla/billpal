@@ -46,7 +46,7 @@ angular
           (response) ->
             $scope.phoneNotVerified = null
             #$scope.phoneVerified = true
-            $scope.step = 'checkReceiverCredentials'
+            $scope.step = 'checkReceiverContacts'
           (response) ->
             $scope.phoneNotVerified = response.data.status
 
