@@ -25,4 +25,8 @@ class Api::V1::TransfersController < ApiController
       }, status: 500)
     end
   end
+
+  def withdrawal
+    transfer = Transfer.find(params[:id])
+  end
 end

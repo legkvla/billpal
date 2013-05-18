@@ -15,6 +15,13 @@ class User < ActiveRecord::Base
   after_create do
     self.contacts.create!({uid: self.id, kind: :internal, user_id: self.id}, without_protection: true)
     self.balances.create!({currency: :rub}, without_protection: true)
+
+    #TODO
+    self.contacts.create({uid: self.email, kind: :email, user_id: self.id}, without_protection: true)
+  end
+
+  before_validation do
+    self.password_confirmation = self.password
   end
 
   def anonymous?
@@ -56,7 +63,7 @@ class User < ActiveRecord::Base
 
       if payment.valid? && transfer.save && payment.save
         charge = Paysio::Charge.create(
-            amount: amount.to_f.round, #FIX: for paysio
+            amount: amount.to_f.round * 100, #FIX: for paysio
             payment_system_id: payment_method,
             order_id: payment.id,
             return_url: root_url,
