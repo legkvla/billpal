@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   has_many :payment_transfers, uniq: true
 
   monetize :amount_cents, as: :amount
+
+  after_create do
+    self.contacts.create!({uid: self.id, kind: :internal, user_id: self.id}, without_protection: true)
+  end
 end
