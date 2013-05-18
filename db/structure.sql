@@ -29,6 +29,95 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: balances; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE balances (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    amount_cents numeric(30,0) NOT NULL,
+    currency_cd integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: balances_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE balances_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: balances_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE balances_id_seq OWNED BY balances.id;
+
+
+--
+-- Name: payment_transfers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE payment_transfers (
+    id integer NOT NULL,
+    amount_cents numeric(30,0) NOT NULL,
+    from_user_id integer,
+    from_contact_id integer NOT NULL,
+    to_user_id integer,
+    to_contact_id integer NOT NULL,
+    state character varying(255) DEFAULT 'pending'::character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: bills; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE bills (
+    id integer,
+    amount_cents numeric(30,0),
+    from_user_id integer,
+    from_contact_id integer,
+    to_user_id integer,
+    to_contact_id integer,
+    state character varying(255) DEFAULT 'pending'::character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    title character varying(255) NOT NULL,
+    description text
+)
+INHERITS (payment_transfers);
+
+
+--
+-- Name: bills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE bills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE bills_id_seq OWNED BY bills.id;
+
+
+--
 -- Name: contacts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -60,23 +149,6 @@ CREATE SEQUENCE contacts_id_seq
 --
 
 ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
-
-
---
--- Name: payment_transfers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE payment_transfers (
-    id integer NOT NULL,
-    amount_cents numeric(30,0) NOT NULL,
-    from_user_id integer,
-    from_contact_id integer NOT NULL,
-    to_user_id integer,
-    to_contact_id integer NOT NULL,
-    state character varying(255) DEFAULT 'pending'::character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
 
 
 --
@@ -154,6 +226,20 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY balances ALTER COLUMN id SET DEFAULT nextval('balances_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY bills ALTER COLUMN id SET DEFAULT nextval('bills_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY contacts ALTER COLUMN id SET DEFAULT nextval('contacts_id_seq'::regclass);
 
 
@@ -169,6 +255,22 @@ ALTER TABLE ONLY payment_transfers ALTER COLUMN id SET DEFAULT nextval('payment_
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: balances_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY balances
+    ADD CONSTRAINT balances_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bills_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY bills
+    ADD CONSTRAINT bills_pkey PRIMARY KEY (id);
 
 
 --
@@ -225,3 +327,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130518075745');
 INSERT INTO schema_migrations (version) VALUES ('20130518091436');
 
 INSERT INTO schema_migrations (version) VALUES ('20130518093955');
+
+INSERT INTO schema_migrations (version) VALUES ('20130518095336');
+
+INSERT INTO schema_migrations (version) VALUES ('20130518101310');
