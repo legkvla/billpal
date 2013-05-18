@@ -1,3 +1,7 @@
 class Balance < ActiveRecord::Base
-  attr_accessible :amount_cents, :currency_cd, :user_id
+  belongs_to :user
+
+  as_enum :currency, usd: 840, euro: 978, rub: 643
+
+  monetize :amount_cents, as: :amount
 end
