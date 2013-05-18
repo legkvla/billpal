@@ -1,4 +1,6 @@
-class PaymentTransfer < ActiveRecord::Base
+# Перевод (я перевожу свои деньги кому-то)
+
+class Transfer < ActiveRecord::Base
   include Payments::Validations
 
   belongs_to :contact_to, class_name: 'Contact'

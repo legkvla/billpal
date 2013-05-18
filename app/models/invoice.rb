@@ -1,6 +1,6 @@
-# Счет с различными филдами (auth only)
+# Просто счет (просить деньги)
 
-class Bill < ActiveRecord::Base
+class Invoice < ActiveRecord::Base
   belongs_to :contact_to, class_name: 'Contact'
   belongs_to :contact_from, class_name: 'Contact'
 
@@ -8,7 +8,6 @@ class Bill < ActiveRecord::Base
   belongs_to :user_from, class_name: 'User'
 
   has_many :payments, as: :paymentable, uniq: true
-  has_many :items
 
   monetize :amount_cents, as: :amount
 end

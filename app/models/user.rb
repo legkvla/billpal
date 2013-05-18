@@ -1,13 +1,12 @@
 class User < ActiveRecord::Base
-	devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-				 :trackable, :validatable, :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :validatable, :omniauthable
 
-	attr_accessible :email, :name, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me
 
-	has_many :authorizations, :dependent => :destroy
+  has_many :authorizations, :dependent => :destroy
   has_many :contacts, uniq: true
-  has_many :payment_transfers, foreign_key: :from_user_id, uniq: true
-  has_many :payment_invoices, foreign_key: :from_user_id, uniq: true
+  has_many :transfers, foreign_key: :from_user_id, uniq: true
   has_many :payments, uniq: true
   has_many :balances, uniq: true
 
@@ -28,7 +27,7 @@ class User < ActiveRecord::Base
     @contact ||= self.contacts.where(kind_cd: Contact.kinds(:internal), uid: self.id.to_s).first if self.persisted?
   end
 
-  def create_payment_transfer amount, contact_to_kind, contact_to_uid, payment_method
+  def create_transfer amount, contact_to_kind, contact_to_uid, payment_method
     amount = amount.to_money
 
     contract_to = Contact.where(kind_cd: Contact.kinds(contact_to_kind), uid: contact_to_uid).first
@@ -36,7 +35,7 @@ class User < ActiveRecord::Base
       contract_to = Contact.create_with_user(contact_to_kind, contact_to_uid)
     end
 
-    payment_transfer = self.payment_transfers.new(
+    transfer = self.transfers.new(
         {
             amount: amount,
             from_contact_id: self.contact.id,
@@ -44,30 +43,24 @@ class User < ActiveRecord::Base
             to_contact_id: contract_to.id
         }, without_protection: true)
 
-    if payment_transfer.present?
-      payment_invoice = self.payment_invoices.new(
+    if transfer.valid?
+      payment = self.payments.new(
           {
               amount: amount,
-              invoiceable: payment_transfer,
-              from_contact_id: self.contact.id,
-              to_user_id: contract_to.user_id,
-              to_contact_id: contract_to.id
+              paymentable: transfer,
+              kind: payment_method,
+              payment_kind: :paysio
           }, without_protection: true)
 
-      if payment_invoice.valid? && payment_transfer.valid? && payment_transfer.save && payment_invoice.save
+      if payment.valid? && transfer.save && payment.save
         charge = Paysio::Charge.create(
             amount: amount.to_f,
             payment_system_id: payment_method,
             description: "PaymentTransfer##{payment_transfer.id}")
 
-        payment_invoice.payments.create(
-            {
-                amount: amount,
-                uid: charge.id
-            }, without_protection: true)
+        payment.update_column({uid: charge.id}, without_protection: true)
+        payment
       end
-    #else
-    #  payment_transfer
     end
   end
 end

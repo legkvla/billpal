@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   include Payments::Validations
 
-  belongs_to :payment_invoice
+  belongs_to :paymentable, polymorphic: true
 
   as_enum :kind, credit_card: 0, phone: 1
   as_enum :payment_kind, paysio: 9000

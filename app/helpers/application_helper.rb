@@ -1,12 +1,5 @@
 module ApplicationHelper
   def hide_controls?
-    not current_user.present? or payment_controller?
-  end
-
-  def payment_controller?
-    case params[:controller]
-      when 'transfers' then true
-      else false
-    end
+    !current_user.present? || payment_controller?
   end
 end
