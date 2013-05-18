@@ -44,6 +44,15 @@
           </div>
         </form>
         <form class="separate-sections" ng-submit="checkReceiverContacts()" ng-switch-when="checkReceiverContacts">
+          <div>
+            Введите сумму платежа
+          </div>
+
+          <div class="input-prepend">
+            <span class="add-on">
+            </span>
+            <input type="text" placeholder="0.00" ng-model="data.charge_amount" required>
+          </div>
 
           <div>
             Введите контактные данные получателя платежа
