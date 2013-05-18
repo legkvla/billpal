@@ -56,7 +56,7 @@ angular
             $scope.step = 'paysioRequest'
 
             Paysio.setPublishableKey(paysioKey)
-            Paysio.form.build($('<form />'), { charge_id: response.data.charge_id });
+            Paysio.form.build($('<form />'), { charge_id: response.charge_id });
           (response) ->
             $scope.contactsNotChecked = response.data.status
 

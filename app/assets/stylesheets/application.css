@@ -101,8 +101,9 @@
 
 		.grid-fluid .block {
 			position: relative;
-			float: left;
-			overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
 			width: 16.6666667%; /* Fallback */
 			width: -webkit-calc(100% / 4);
 			width: calc(100% / 4);
