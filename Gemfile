@@ -86,4 +86,6 @@ gem 'multi_xml'
 
 gem 'nokogiri'
 
+gem 'uuidtools'
+
 
