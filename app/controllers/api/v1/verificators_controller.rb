@@ -7,7 +7,7 @@ class Api::V1::VerificatorsController < ApiController
     if params[:phone_number].present? && valid_phone?(params[:phone_number])
       phone_number = params[:phone_number].to_s
       if session[:phone_numbers][phone_number].present?
-        render json: {status: 'already sent'}, status: 500
+        render json: {status: 'already sent'}
       else
         code = (Random.rand(899_999) + 100_000).to_s
         session[:phone_numbers][phone_number] = code
@@ -37,8 +37,12 @@ class Api::V1::VerificatorsController < ApiController
                     new_user = User.create!({
                         email: "#{SecureRandom.hex}@internal.anonymous",
                         password: password,
-                        password_confirmation: password
+                        password_confirmation: password,
+                        role: 'anonymous'
                     }, without_protection: true)
+
+                    sign_in(new_user)
+
                     new_user.contacts.scoped
                   end
 
