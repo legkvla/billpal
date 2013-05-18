@@ -151,7 +151,53 @@
 					text-align: center;
 				}
 
-		@media screen and (max-width: 1190px) {
+                .valign-middle {
+                    vertical-align: middle;
+                }
+
+                .text-right {
+                    text-align: right !important;
+                }
+
+                .no-border > * {
+                    border: 0 !important;
+                }
+
+                .summary {
+                    font-size: 1.5em;
+                }
+
+                .summary:first-child > td {
+                    border-top: 2px solid;
+                }
+
+                .invoice-page {
+                    width: 768px;
+                    margin: 2em auto;
+                }
+
+                .invoice-header {
+                    margin-bottom: 1em;
+                }
+
+                .document {
+                    background: rgb( 255, 255, 255 );
+                    border: 1px solid rgb(216, 216, 216);
+                    padding: 2em;
+                    position: relative;
+
+                }
+
+                .document-footer {
+                    margin-top: 10%;
+                }
+
+                .label {
+                    font-weight: normal;
+                    background-image: none;
+                }
+
+        @media screen and (max-width: 1190px) {
 			.grid-fluid .box {
 				width: 20%; /* Fallback */
 				width: -webkit-calc(100% / 2);

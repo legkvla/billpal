@@ -5,7 +5,7 @@ class Api::V1::VerificatorsController < ApiController
     if params[:phone_number].present?
       session[:phone_numbers] ||= {}
       if valid_phone?(params[:phone_number])
-        phone_number = params[:phone_number].to_s
+        phone_number = parse_phone_number(params[:phone_number])
         if session[:phone_numbers][phone_number].present?
           render json: {status: 'already sent'}
         else
@@ -40,7 +40,7 @@ class Api::V1::VerificatorsController < ApiController
 
   def verification_code
     if params[:code].present? && params[:phone_number].present? && valid_phone?(params[:phone_number])
-      phone_number = params[:phone_number]
+      phone_number = parse_phone_number(params[:phone_number])
       code = session[:phone_numbers][phone_number].to_s
 
       if code.present? && params[:code].to_s == code
