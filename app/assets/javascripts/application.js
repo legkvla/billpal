@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular/angular.min
+//= require angular/i18n/angular-locale_ru-ru
+//= require angular/angular-resource.min
 //= require_tree .
