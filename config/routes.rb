@@ -33,5 +33,9 @@ Billpal::Application.routes.draw do
     end
   end
 
+  namespace :returns do
+    get 'paysio' => 'paysio#return'
+  end
+
   root to: 'pages#index'
 end

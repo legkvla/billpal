@@ -1,2 +1,13 @@
 <h1>Pages#index</h1>
 <p>Find me in app/views/pages/index.html.erb</p>
+
+<link href="https://paysio.com/static/v1/paysio.css" type="text/css" rel="styleSheet" />
+<script src="https://paysio.com/static/v1/paysio.js"></script>
+
+<form id="paysio_form"></form>
+
+<script>
+    Paysio.setPublishableKey('<%= Settings.paysio.key %>');
+
+    Paysio.form.build($('#paysio_form'), { charge_id: 'ch_5IwojXsAHHv46QJSPKvKz' });
+</script>
