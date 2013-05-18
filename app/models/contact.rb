@@ -1,6 +1,8 @@
 class Contact < ActiveRecord::Base
   include ValidatorsHelper
 
+  attr_accessible :kind, :uid
+
   belongs_to :user
 
   as_enum :kind, internal: 0, phone: 1

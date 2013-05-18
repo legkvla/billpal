@@ -22,6 +22,8 @@ Billpal::Application.routes.draw do
       end
 
 
+      resources :contacts
+
       # Verificators
       post 'verificators/verificate' => 'verificators#verificate'
       post 'verificators/verification_code' => 'verificators#verification_code'
