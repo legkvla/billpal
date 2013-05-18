@@ -11,17 +11,7 @@ angular
       for meta in metas
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = meta.content if meta.name == 'csrf-token'
   ])
-  .config([
-    '$locationProvider',
-    ($locationProvider) ->
-      $locationProvider.html5Mode true
-  ])
-  .config([
-    '$routeProvider',
-    ($routeProvider) ->
-      #
-      #
-  ])
+
   .controller('TransfersController', [
     '$scope'
     '$resource'
@@ -57,7 +47,34 @@ angular
 
 angular
   .module('billpal', ['transfers'])
+  .config([
+    '$locationProvider',
+    ($locationProvider) ->
+      $locationProvider.html5Mode true
+  ])
+  .config([
+    '$routeProvider',
+    (r) ->
+      r.when '/dashboard',
+        templateUrl: '/templates/invoices.html'
+
+      r.when '/dashboard/transfers_in',
+        templateUrl: '/templates/transfers_in.html'
+        controller: 'TransfersController'
+
+      r.when '/dashboard/transfers_out',
+        templateUrl: '/templates/transfers_out.html'
+        controller: 'TransfersController'
+
+  ])
   .controller('RootController', [
+    '$scope'
+    '$location'
+    ($scope, $location) ->
+      $scope.activeClass = (path) ->
+        active: if path.join? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+  ])
+  .controller('TransfersController', [
     '$scope'
     ($scope) ->
       #

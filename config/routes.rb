@@ -5,8 +5,11 @@ Billpal::Application.routes.draw do
 	devise_for :users, :path => 'accounts',
 						 :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks', :registrations => 'registrations' }
 
-  resources :dashboard
+  get 'dashboard(/:any_action)' => 'dashboard#index'
+
   resources :transfers
+
+  resources :templates
 
   namespace :management do
     check_for_admin = lambda { |request| request.env['warden'].authenticate? && request.env['warden'].user.admin? }
