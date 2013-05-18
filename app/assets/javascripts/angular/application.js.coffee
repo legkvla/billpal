@@ -20,6 +20,7 @@ angular
       $scope.setPaysioKey = (key) -> paysioKey = key
 
       $scope.step = 'verificatePhone'
+      $scope.setStep = (step) -> $scope.step = step
       $scope.data = {}
 
       $scope.verificatePhone = ->
@@ -28,7 +29,7 @@ angular
           (response) ->
             $scope.verificationCodeNotSent = null
             #$scope.verificationCodeSent = true
-            $scope.step = 'verificateCode'
+            $scope.setStep 'verificateCode'
           (response) ->
             $scope.verificationCodeNotSent = response.data.status
 
@@ -39,7 +40,7 @@ angular
           (response) ->
             $scope.phoneNotVerified = null
             #$scope.phoneVerified = true
-            $scope.step = 'checkReceiverContacts'
+            $scope.setStep 'checkReceiverContacts'
           (response) ->
             $scope.phoneNotVerified = response.data.status
 
@@ -53,7 +54,7 @@ angular
           (response) ->
             $scope.contactsNotChecked = null
             #$scope.verificationCodeSent = true
-            $scope.step = 'paysioRequest'
+            $scope.setStep 'paysioRequest'
 
             Paysio.setPublishableKey(paysioKey)
             Paysio.form.build($('<form />'), { charge_id: response.charge_id });
@@ -92,7 +93,15 @@ angular
         templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
+      r.when '/transfers',
+        template: '<span></span>'
+        controller: 'RedirectController'
 
+  ])
+  .controller('RedirectController', [
+    '$location'
+    ($location) ->
+      location.href = $location.path()
   ])
   .controller('RootController', [
     '$scope'
