@@ -173,7 +173,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-odnoklassniki (0.0.2)
+    omniauth-odnoklassniki (0.0.4)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
     omniauth-vkontakte (1.2.0)
