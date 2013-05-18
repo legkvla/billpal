@@ -1,4 +1,4 @@
-require 'bundler/deployment'
+require 'bundler/capistrano'
 
 set :application, "billpal"
 set :user,        "deploy"
@@ -14,6 +14,7 @@ role :web, domain
 role :db,  domain, :primary => true
 
 set :rails_env, "production"
+default_run_options[:shell] = '/bin/bash --login'
 
 namespace :deploy do
   task :start, :roles => :app do
@@ -29,3 +30,5 @@ namespace :deploy do
     run "touch #{current_release}/tmp/restart.txt"
   end
 end
+
+after 'deploy:update_code', 'deploy:migrate'
