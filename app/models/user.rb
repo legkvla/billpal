@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable
 
@@ -56,6 +58,11 @@ class User < ActiveRecord::Base
         charge = Paysio::Charge.create(
             amount: amount.to_f.round, #FIX: for paysio
             payment_system_id: payment_method,
+            order_id: payment.id,
+            return_url: root_url,
+            success_url: returns_paysio_url,
+            failure_url: returns_paysio_url,
+            currency_id: 'rur',
             description: "PaymentTransfer##{payment.id}")
 
         payment.update_column(:uid, charge.id)

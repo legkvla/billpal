@@ -10,6 +10,7 @@ defaults: &defaults
     user: "2907_b00m"
     password: "P244w0rd"
   paysio:
+    key: 'pk_8AivNdCA3oIHSWvNpyTDZr8rU6eG4OltI1DgRNt'
     secret: 'IjhH5BfD7qH2BygsnlflTj6RvvGjnXAnm2HpTn0'
 
 development:
