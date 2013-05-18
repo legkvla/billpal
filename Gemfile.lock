@@ -27,6 +27,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: http://ce60427f:b2c8c27e@www.mikeperham.com/rubygems/
   specs:
     actionmailer (3.2.13)
       actionpack (= 3.2.13)

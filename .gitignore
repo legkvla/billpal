@@ -9,15 +9,18 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/schema.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
 # Ignore config files
-config/database.yml
+/config/database.yml
 
 # Ignore idea files
 /.idea
 
 .DS_Store
+
+/app/assets/javascripts/routes.js
