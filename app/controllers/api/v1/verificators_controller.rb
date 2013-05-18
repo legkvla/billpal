@@ -24,6 +24,7 @@ class Api::V1::VerificatorsController < ApiController
     if params[:code].present? && params[:phone_number].present? && valid_phone?(params[:phone_number])
       phone_number = params[:phone_number]
       code = session[:phone_numbers][phone_number].to_s
+
       if code.present? && params[:code].to_s == code
         # TODO: investigate not removing phone number
         session[:phone_numbers].delete phone_number

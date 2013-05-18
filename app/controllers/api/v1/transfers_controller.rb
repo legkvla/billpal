@@ -11,7 +11,7 @@ class Api::V1::TransfersController < ApiController
           params[:contact_to_uid],
           params[:payment_method])
       if transfer.valid?
-
+        render json: {status: 'ok'}
       else
         render json: {status: 'invalid payment data'}, status: 500
       end

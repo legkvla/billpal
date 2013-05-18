@@ -7,6 +7,8 @@ class ApiController < ApplicationController
 
   respond_to :json
 
+  layout false
+
   private
 
   def error_render_method exception
