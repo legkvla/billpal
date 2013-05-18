@@ -13,6 +13,12 @@ Billpal::Application.routes.draw do
     end
   end
 
+  resources :invoices do
+    member do
+      get 'from_email/*slug', action: :from_email, as: :from_email
+    end
+  end
+
   resources :templates
 
   namespace :management do
@@ -33,6 +39,8 @@ Billpal::Application.routes.draw do
       resources :bills do
         resources :items, namespace: :bills
       end
+
+      get 'items/unique' => 'items#index_all_unique'
 
       resources :contacts
 
