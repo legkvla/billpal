@@ -11,6 +11,7 @@ gem 'russian'
 
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-vkontakte'
 
 
 # Gems used only for assets and not required
