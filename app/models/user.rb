@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 	end
 
 	protected
-	def confirmation_required?
-		false
-	end
+	#def confirmation_required?
+	#	false
+	#end
 end
