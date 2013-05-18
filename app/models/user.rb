@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :transfers, foreign_key: :from_user_id, uniq: true
   has_many :payments, uniq: true
   has_many :balances, uniq: true
+  has_many :bills, foreign_key: :from_user_id, uniq: true
+  has_many :invoices, foreign_key: :from_user_id, uniq: true
 
   after_create do
     self.contacts.create!({uid: self.id, kind: :internal, user_id: self.id}, without_protection: true)
