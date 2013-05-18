@@ -74,7 +74,7 @@ angular
     '$routeProvider',
     (r) ->
       r.when '/dashboard',
-        templateUrl: '/templates/invoices.html'
+        templateUrl: '/templates/bills.html'
 
       r.when '/dashboard/transfers_in',
         templateUrl: '/templates/transfers_in.html'
@@ -88,9 +88,9 @@ angular
         templateUrl: '/templates/people.html'
         controller: 'PeopleController'
 
-      r.when '/dashboard/invoice_templates',
-        templateUrl: '/templates/invoice_templates.html'
-        controller: 'InvoiceTemplatesController'
+      r.when '/dashboard/bill_templates',
+        templateUrl: '/templates/bill_templates.html'
+        controller: 'BillTemplatesController'
 
 
   ])
@@ -111,7 +111,7 @@ angular
     ($scope) ->
       #
   ])
-  .controller('InvoiceTemplatesController', [
+  .controller('BillTemplatesController', [
     '$scope'
     ($scope) ->
       #
