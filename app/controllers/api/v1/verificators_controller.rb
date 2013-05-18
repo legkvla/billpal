@@ -39,9 +39,6 @@ class Api::V1::VerificatorsController < ApiController
                         password: password,
                         password_confirmation: password
                     }, without_protection: true)
-
-                    sign_in(new_user)
-
                     new_user.contacts.scoped
                   end
 
