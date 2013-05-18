@@ -25,7 +25,7 @@ class Api::V1::VerificatorsController < ApiController
       phone_number = params[:phone_number]
       code = session[:phone_numbers][phone_number].to_s
       if code.present? && params[:code].to_s == code
-        #TODO: investigate not removing phone number
+        # TODO: investigate not removing phone number
         session[:phone_numbers].delete phone_number
         contact = Contact.where(uid: phone_number, kind_cd: Contact.kinds(:internal)).first
 
@@ -41,13 +41,13 @@ class Api::V1::VerificatorsController < ApiController
                         role: 'anonymous'
                     }, without_protection: true)
 
-                    sign_in(new_user)
-
                     new_user.contacts.scoped
                   end
 
-          scope.create!({kind: :internal, uid: phone_number}, without_protection: true)
+          contact = scope.create!({kind: :internal, uid: phone_number}, without_protection: true)
         end
+
+        sign_in(contact.user) unless current_user.present?
 
         render json: {status: 'ok'}
       else

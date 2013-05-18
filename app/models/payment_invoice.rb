@@ -1,3 +1,12 @@
 class PaymentInvoice < ActiveRecord::Base
-  attr_accessible :from_contact_id, :from_user_id, :invoiceable_id, :invoiceable_type, :to_contact_id, :to_user_id
+  include Payments::Validations
+
+  belongs_to :invoiceable
+
+  has_many :payments, uniq: true
+
+  validate :amount_greater_that_zero
+  validate :receiver_cant_be_sender
+
+  monetize :amount_cents, as: :amount
 end
