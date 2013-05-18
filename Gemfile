@@ -2,43 +2,83 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'pg'
 
-gem 'russian'
-
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-vkontakte'
-
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development, :production do
+  gem 'transaction_isolation'
+  gem 'pg_deadlock_retry', github: 'TimothyKlim/pg_deadlock_retry', ref: 'cd3d8e8'
+end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'russian'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'devise'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+gem 'omniauth'
+gem 'omniauth-oauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-vkontakte'
+gem 'omniauth-facebook'
+gem 'oa-oauth'
+gem 'omniauth-mailru'
+gem 'omniauth-odnoklassniki'
 
-# To use debugger
-# gem 'debugger'
+gem 'cancan'
+
+gem 'active_utils'
+
+gem 'carrierwave', github: 'jnicklas/carrierwave', ref: '8f5e9306b0062c619ab53b580dff028c58bea64b'
+gem 'rmagick'
+gem 'fog'
+
+gem 'formtastic'
+
+gem 'meta_search'
+
+gem 'money-rails', github: 'TimothyKlim/money-rails', ref: '44502a94ec51a01c458bfbf305b7c59f822bc688'
+
+gem 'sidekiq-pro'
+
+gem 'hiredis'
+gem 'redis', require: ['redis', 'redis/connection/hiredis']
+gem 'redis-store'
+gem 'redis-rails'
+
+gem 'rqrcode-rails3'
+
+gem 'settingslogic'
+
+gem 'state_machine'
+gem 'state_machine-audit_trail'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'csscss'
+
+  gem 'quiet_assets'
+end
+
+gem 'kaminari'
+
+gem 'js-routes'
+
+gem 'faraday'
+
+gem 'oj'
+gem 'multi_json'
+
+gem 'ox'
+gem 'multi_xml'
+
+gem 'nokogiri'
+
+
