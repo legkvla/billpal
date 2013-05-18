@@ -16,3 +16,8 @@
 
 # Ignore config files
 /config/*.yml
+
+# Ignore idea files
+/.idea
+
+.DS_Store
