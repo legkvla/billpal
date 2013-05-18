@@ -9,7 +9,7 @@ Billpal::Application.routes.draw do
 
   resources :transfers do
     member do
-      get 'from_email/*slug', action: :from_email, as: :transfer_from_email
+      get 'from_email/*slug', action: :from_email, as: :from_email
     end
   end
 
@@ -41,6 +41,8 @@ Billpal::Application.routes.draw do
 
   namespace :returns do
     get 'paysio' => 'paysio#return'
+
+    get 'email/*slug' => 'email#verification_slug', as: :email_verification_slug
   end
 
   root to: 'pages#index'

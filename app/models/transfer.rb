@@ -3,11 +3,11 @@
 class Transfer < ActiveRecord::Base
   include Payments::Validations
 
-  belongs_to :contact_to, class_name: 'Contact'
-  belongs_to :contact_from, class_name: 'Contact'
+  belongs_to :to_contact, class_name: 'Contact'
+  belongs_to :from_contact, class_name: 'Contact'
 
-  belongs_to :user_to, class_name: 'User'
-  belongs_to :user_from, class_name: 'User'
+  belongs_to :to_user, class_name: 'User'
+  belongs_to :from_user, class_name: 'User'
 
   has_many :payments, as: :paymentable, uniq: true
   has_many :withdrawals, as: :withdrawable, uniq: true
@@ -18,7 +18,7 @@ class Transfer < ActiveRecord::Base
   monetize :amount_cents, as: :amount
 
   before_create do
-    self.slug = SecureRandom.base64(135) if self.contact_to.email?
+    self.slug = SecureRandom.base64(135) if self.to_contact.email?
   end
 
   state_machine :state, initial: :pending do
@@ -62,7 +62,11 @@ class Transfer < ActiveRecord::Base
       user = transfer.to_user
       if user.anonymous?
         contact = transfer.to_contact
-        raise contact.inspect
+        if contact.email?
+          NotificationsMailer.transfer(transfer.id).deliver!
+        elsif contact.phone?
+
+        end
       else
 
       end
