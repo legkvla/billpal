@@ -40,6 +40,8 @@ Billpal::Application.routes.draw do
         resources :items, namespace: :bills
       end
 
+      get 'items/unique' => 'items#index_all_unique'
+
       resources :contacts
 
       # Verificators

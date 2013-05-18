@@ -25,6 +25,22 @@ class Api::V1::ItemsController < ApiController
     render json: @shared_bill.items.as_json
   end
 
+  def index_all_unique
+    bills = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user)
+    items = bills.map(&:items).flatten
+
+    items_with_unique_names = items.uniq do |item|
+      items.find_index {|i| i.title == item.title}
+    end
+
+    render json: (items_with_unique_names.map do |item|
+      {
+          title: item.title,
+          unit_price: item.unit_price
+      }
+    end.as_json)
+  end
+
   def show
     item = @shared_bill.items.find(params[:id])
 
@@ -42,7 +58,9 @@ class Api::V1::ItemsController < ApiController
   private
 
   def find_bill
-    @shared_bill = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user).find(params[:bill_id])
-    @user_bill = current_user.bills.find(params[:bill_id])
+    unless params[:action] == "index_all_unique"
+      @shared_bill = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user).find(params[:bill_id])
+      @user_bill = current_user.bills.find(params[:bill_id])
+    end
   end
 end
