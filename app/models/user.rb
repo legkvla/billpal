@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :balances, uniq: true
   has_many :bills, foreign_key: :from_user_id, uniq: true
   has_many :invoices, foreign_key: :from_user_id, uniq: true
+  has_many :notifications, uniq: true
 
   after_create do
     self.contacts.create!({uid: self.id, kind: :internal, user_id: self.id}, without_protection: true)
@@ -79,6 +80,18 @@ class User < ActiveRecord::Base
       end
     end
 	end
+
+  def title
+    'John'
+  end
+
+  def notifications_count
+    @notifications_count ||= self.notifications.count
+  end
+
+  def view_notifications!
+    self.notifications.newest.update_all({viewed: true}, without_protection: true)
+  end
 
 	protected
 	#def confirmation_required?

@@ -10,8 +10,10 @@
 
           <a href="#" class="dropdown-toggle" ng-click="profileDropdownOpen = !profileDropdownOpen">
                   <span>
-                    <%= image_tag "avatars/avatar1.jpg", class: "menu-avatar" %> <span>John Smith <i class="icon-caret-down"></i></span>
-                    <span class="badge badge-dark-red">5</span>
+                    <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-caret-down"></i></span>
+                    <% if current_user.notifications_count > 0 %>
+                        <span class="badge badge-dark-red"><%= current_user.notifications_count %></span>
+                    <% end %>
                   </span>
           </a>
 
@@ -19,18 +21,26 @@
 
             <!-- the first element is the one with the big avatar, add a with-image class to it -->
 
-            <li class="with-image">
-              <div class="avatar">
-                <%= image_tag "avatars/avatar1.jpg" %>
-              </div>
-              <span>John Smith</span>
-            </li>
+            <!--<li class="with-image">-->
+              <!--<div class="avatar">-->
+                <!--<%= image_tag gravatar_url(current_user.email, 32) %>-->
+              <!--</div>-->
+              <!--<span>John Smith</span>-->
+            <!--</li>-->
 
-            <li class="divider"></li>
+            <!--<li class="divider"></li>-->
 
             <li><a href="#"><i class="icon-user"></i> <span>Profile</span></a></li>
             <li><a href="#"><i class="icon-cog"></i> <span>Settings</span></a></li>
-            <li><a href="#"><i class="icon-envelope"></i> <span>Messages</span> <span class="label label-dark-red pull-right">5</span></a></li>
+            <li>
+              <a href="#">
+                <i class="icon-envelope"></i>
+                <span>Messages</span>
+                <% if current_user.notifications_count > 0 %>
+                    <span class="label label-dark-red pull-right"><%= current_user.notifications_count %></span>
+                <% end %>
+              </a>
+            </li>
             <li><a href="<%= destroy_user_session_path %>"><i class="icon-off"></i> <span>Logout</span></a></li>
           </ul>
         </li>

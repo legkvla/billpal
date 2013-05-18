@@ -13,6 +13,12 @@ Billpal::Application.routes.draw do
     end
   end
 
+  resources :invoices do
+    member do
+      get 'from_email/*slug', action: :from_email, as: :from_email
+    end
+  end
+
   resources :templates
 
   namespace :management do
