@@ -1,0 +1,3 @@
+ru:
+  verificators:
+    phone_number: 'Ваш код для подтверждения: %{code}'

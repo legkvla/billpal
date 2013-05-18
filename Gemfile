@@ -45,6 +45,9 @@ gem 'meta_search'
 
 gem 'money-rails', github: 'TimothyKlim/money-rails', ref: '44502a94ec51a01c458bfbf305b7c59f822bc688'
 
+gem 'slim', '>= 1.3.8'
+gem 'slim-rails'
+gem 'sinatra', require: false
 gem 'sidekiq-pro'
 
 gem 'hiredis'

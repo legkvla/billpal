@@ -6,6 +6,9 @@ defaults: &defaults
     facebook:
       id: '3654198'
       secret: '4mmhmh9oNVi0N6sR94f7'
+  sms:
+    user: "2907_b00m"
+    password: "P244w0rd"
 
 development:
   <<: *defaults
