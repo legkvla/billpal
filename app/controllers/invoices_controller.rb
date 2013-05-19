@@ -1,9 +1,11 @@
 class InvoicesController < ApplicationController
+	layout '_invoice'
+
   def from_email
 
 	end
 
-	def new
+	def show
 
 	end
 end
