@@ -3,51 +3,54 @@
     <h3>Создать инвойс</h3>
 
     <div class="document">
-      <form action="POST" class="form-horizontal">
+      <form class="form-horizontal" ng-submit="createBill(new_bill)">
         <div class="control-group">
           <label class="control-label">Название</label>
 
           <div class="controls">
-            <select class="select2 input-medium" data-placeholder="Указать название">
-              <option value="id1">Работы по сайту</option>
-            </select>
+            <input class="select2 input-medium" data-placeholder="Указать название" ng-model="new_bill.title">
           </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group" ng-hide="addClientFormOpen">
           <label class="control-label">Клиент</label>
 
           <div class="controls">
-            <select class="select2 input-medium" data-placeholder="Выбрать клиента">
-              <option value="id1">Евгений Родионов</option>
-              <option value="id1">Евгений Родионов</option>
-              <option value="id1">Евгений Родионов</option>
-              <option value="id1">Евгений Родионов</option>
-              <option value="id1">Евгений Родионов</option>
-            </select>
-            <a href="#" class="btn btn-mini btn-green" style="height: 27px"><i class="icon-plus-sign"></i></a>
-            <a href="#" class="btn btn-mini btn-red" style="height: 27px"><i class="icon-minus-sign"></i></a>
+            <div class="input-medium" ui-select2="userSelect" data-placeholder="Выбрать клиента" ng-model="new_bill.to_user_id">
+            </div>
+            <a ng-click="addClientFormOpen = true" class="btn btn-mini btn-green" style="height: 27px"><i class="icon-plus-sign"></i></a>
+            <!-- a href="#" class="btn btn-mini btn-red" style="height: 27px"><i class="icon-minus-sign"></i></a -->
           </div>
         </div>
 
-        <div class="control-group">
-          <h4><label class="control-label">Новый клиент</label></h4>
-        </div>
+        <div ng-show="addClientFormOpen">
+            <div class="control-group">
+              <h4><label class="control-label">Новый клиент</label></h4>
+            </div>
 
-        <div class="control-group">
-          <label class="control-label">Имя</label>
+            <div class="control-group">
+              <label class="control-label">Имя</label>
 
-          <div class="controls">
-            <input type="text" class="input-medium">
-          </div>
-        </div>
+              <div class="controls">
+                <input type="text" class="input-medium" ng-model="new_bill.to_user_attributes.first_name">
+              </div>
+            </div>
 
-        <div class="control-group">
-          <label class="control-label">Фамилия</label>
+            <div class="control-group">
+              <label class="control-label">Фамилия</label>
 
-          <div class="controls">
-            <input type="text" class="input-medium">
-          </div>
+              <div class="controls">
+                <input type="text" class="input-medium" ng-model="new_bill.to_user_attributes.last_name">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">E-mail</label>
+
+              <div class="controls">
+                <input type="text" class="input-medium" ng-model="new_bill.to_user_attributes.email">
+              </div>
+            </div>
         </div>
 
 					<table class="table">
@@ -61,28 +64,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr ng-repeat="item in new_bill.items_attributes">
 								<td><a href="#" class="btn btn-mini btn-red"><i class="icon-minus-sign"></i></a></td>
 								<td>
-									<select  class="select2">
-										<option value="">Верстка</option>
-										<option value="">Хуерстка</option>
-										<option value="">Макет</option>
-										<option value="">Хуекет</option>
-									</select>
+                                  <input ng-model="item.title">
 								</td>
 								<td>
-									<input type="text" class="input-mini">
+									<input type="text" class="input-mini" ng-model="item.count">
 								</td>
 								<td>
-									<input type="text" class="input-mini">
+									<input type="text" class="input-mini" ng-model="item.unit_price">
 								</td>
 								<td>
-									<span class="total">400.00</span>
+									<span class="total" ng-bind="item.count * item.unit_price | currency"></span>
 								</td>
 							</tr>
 							<tr>
-								<td colspan="5"><a href="#" class="btn btn-mini btn-green"><i class="icon-plus-sign"></i></a></td>
+								<td colspan="5"><a ng-click="new_bill.items_attributes.push({})" class="btn btn-mini btn-green"><i class="icon-plus-sign"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -95,6 +93,3 @@
 
 		</div>
 	</div>
-	<script>
-		$( '.select2' ).select2( );
-	</script>
