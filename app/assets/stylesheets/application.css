@@ -294,3 +294,7 @@
 .form-balance .form-actions {
 	/* padding-left: 115px; */
 }
+
+.document form label {
+	font-size: 1.3em;
+}
