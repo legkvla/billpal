@@ -16,5 +16,4 @@
 //= require angular/i18n/angular-locale_ru-ru
 //= require angular/angular-resource.min
 //= require routes
-//= require_tree ./vendor
 //= require_tree .
