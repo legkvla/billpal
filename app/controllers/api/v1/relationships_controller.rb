@@ -13,6 +13,7 @@ class Api::V1::RelationshipsController < ApiController
   end
 
   def index
-    render(json: current_user.followed_users.select([:id, :email, :first_name, :last_name]).as_json)
+    columns_string = %w[id email first_name last_name].map { |_| "users.#{_}" }.join(',')
+    render(json: current_user.followed_users.select(columns_string).as_json)
   end
 end

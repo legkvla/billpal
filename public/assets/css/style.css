@@ -267,41 +267,7 @@ PARALLAX EFFECTS...........................1474
 			
 			}
 /********************************* NAVIGATION MENU *************************************/
-			
-			.navbar-fixed-top .navbar-inner,  .navbar-static-top .navbar-inner {
-				-webkit-box-shadow: none;
-				-moz-box-shadow: none;
-				box-shadow: none;
-				background-color: rgba(0, 0, 0, 0.3);
-				background: rgba(0, 0, 0, 0.3) url(../img/line_bg.png) top left repeat;
-				background-image:url(../img/line_bg.png) top left repeat;
-				padding-top:10px;
-				padding-bottom:10px;
-				border-bottom: none;
-				-moz-transition: padding 0.5s ease-in-out;
-				-o-transition: padding 0.5s ease-in-out;
-				-webkit-transition: padding 0.5s ease-in-out;
-				-ms-transition: padding 0.5s ease-in-out;
-				transition: padding 0.5s ease-in-out;
-				z-index:1030;
-				filter: none;
-			}
-			
-			.navbar-static-top{
-				position:relative;
-			}
-			.navbar-inner.navbar-scroll {
-				border-top: none;
-				background:rgba(0, 0, 0, 0.7) url(../img/line_bg.png) top left repeat;
-				padding-bottom:5px;
-				padding-top:5px;
-				-moz-transition: padding 0.5s ease-in-out;
-				-o-transition: padding 0.5s ease-in-out;
-				-webkit-transition: padding 0.5s ease-in-out;
-				-ms-transition: padding 0.5s ease-in-out;
-				transition: padding 0.5s ease-in-out;
-			}
-			
+						
 			.navbar .nav > li > a {
 				float: none;
 				padding: 5px 15px 5px;
@@ -336,8 +302,6 @@ PARALLAX EFFECTS...........................1474
 					-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
 					-moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
 					box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
-					padding: 8px 15px 8px;
-					margin-top:3px;
 					}
 					
 					.navbar .brand {
