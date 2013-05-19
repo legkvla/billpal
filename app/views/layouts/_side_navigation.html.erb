@@ -6,20 +6,18 @@
 
   <!-- Main nav -->
   <ul class="nav nav-collapse collapse nav-collapse-primary">
-
-
     <li ng-class="activeClass('/dashboard')">
       <span class="glow"></span>
       <a href="/dashboard">
-        <i class="icon-dashboard icon-2x"></i>
+        <i class="icon-double-angle-left icon-2x"></i>
         <span>Инвойсы</span>
       </a>
     </li>
 
-    <li ng-class="activeClass('/dashboard')">
+    <li ng-class="activeClass('/dashboard/transfers_out')">
       <span class="glow"></span>
       <a ng-href="/dashboard/transfers_out">
-        <i class="icon-dashboard icon-2x"></i>
+        <i class="icon-double-angle-right icon-2x"></i>
         <span>Переводы</span>
       </a>
     </li>  
@@ -27,7 +25,7 @@
   <li ng-class="activeClass('/dashboard/people')">
     <span class="glow"></span>
     <a ng-href="/dashboard/people">
-      <i class="icon-edit icon-2x"></i>
+      <i class="icon-user icon-2x"></i>
       <span>Контакты</span>
     </a>
   </li>
@@ -36,10 +34,9 @@
     <li ng-class="activeClass('/dashboard/bill_templates')">
       <span class="glow"></span>
       <a ng-href="/dashboard/bill_templates">
-        <i class="icon-edit icon-2x"></i>
+        <i class="icon-tasks icon-2x"></i>
         <span>Прайс-лист</span>
       </a>
     </li>
-
 </ul>
 </div>
