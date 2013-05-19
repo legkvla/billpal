@@ -1,10 +1,13 @@
 class Api::V1::BillsController < ApiController
   def create
-    params[:bill][:amount_cents] = 0
-    bill = current_user.bills.new(params[:bill].merge(:from_contact_id => current_user.contact.id))
+    params[:amount_cents] = 0
+    attributes = params.dup
+    %w[created_at action controller bill].each{ |k| attributes.delete k }
+
+    bill = current_user.bills.new attributes.merge(:from_contact_id => current_user.contact.try(:id).to_i)
 
     if bill.save
-      redirect_to api_v1_bill_path(bill)
+      render json: bill
     else
       format_errors bill.errors.as_json
     end
@@ -13,8 +16,8 @@ class Api::V1::BillsController < ApiController
   def update
     bill = current_user.bills.find(params[:id])
 
-    if bill.update_attributes(params[:bill])
-      redirect_to(api_v1_bill_path(bill))
+    if bill.update_attributes(params)
+      render json: bill
     else
       format_errors bill.errors.as_json
     end
