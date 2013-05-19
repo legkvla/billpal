@@ -100,6 +100,9 @@ angular
       r.when '/invoice_new',
         templateUrl: '/templates/invoice_new.html'
 
+      r.when '/invoice/show/1',
+        templateUrl: '/templates/invoice_show.html'
+
       r.when '/dashboard',
         templateUrl: '/templates/bills_drafts.html'
         controller: 'BillsController'
