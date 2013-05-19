@@ -199,6 +199,15 @@ angular
     ($scope, $location) ->
       $scope.activeClass = (path) ->
         active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+
+      $scope.invoiceClass = null
+
+      $scope.invoiceClassSelector = (selector) ->
+        'lightblue' if selector == $scope.invoiceClass
+
+      $scope.setInvoiceFilter = (selector) ->
+        $scope.invoiceClass = selector
+
   ])
   .factory('Bill', [
     '$resource'
