@@ -26,3 +26,5 @@
 .DS_Store
 
 /app/assets/javascripts/routes.js
+/billpal_developement/
+logfile
