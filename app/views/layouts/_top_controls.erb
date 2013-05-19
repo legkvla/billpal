@@ -47,7 +47,7 @@
       <% end %>
 
       <ul class="nav pull-right">
-        <li class="active"><a ng-href="/balance" title="Go home"><i class="icon-home"></i> Баланс: 400р.</a></li>
+        <li class="active"><a ng-href="/balance" title="Go home"><i class="icon-home"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
       </ul>
 
     </div>

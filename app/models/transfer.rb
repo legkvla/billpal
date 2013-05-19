@@ -60,6 +60,9 @@ class Transfer < ActiveRecord::Base
 
     after_transition on: :pay do |transfer, _|
       user = transfer.to_user
+      balance = user.balance
+      balance_amount_cents = (balance.amount + transfer.amount).cents
+      balance.update_attributes!({amount_cents: balance_amount_cents}, without_protection: true)
       if user.anonymous?
         contact = transfer.to_contact
         if contact.email?
