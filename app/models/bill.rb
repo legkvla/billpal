@@ -40,6 +40,12 @@ class Bill < ActiveRecord::Base
     end
   end
 
+  def to_user=(attributes)
+    unless attributes.blank?
+      self.to_user_id = attributes[:id]
+    end
+  end
+
   def overdue_days
     days = (Date.today - (pay_until || Date.today)).to_i
     if days > 0
