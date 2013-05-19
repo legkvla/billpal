@@ -33,6 +33,11 @@ class Bill < ActiveRecord::Base
     daily_penalty.to_i.to_f / 100 * amount_cents.to_i * overdue_days
   end
 
+  def to_user_attributes=(attributes)
+    self.to_user = User.create!(attributes.merge(:password => "soclose!"))
+    self.to_contact = to_user.contact
+  end
+
   def overdue_days
     days = (Date.today - (pay_until || Date.today)).to_i
     if days > 0
