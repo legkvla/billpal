@@ -42,7 +42,7 @@ class Bill < ActiveRecord::Base
 
   def to_user_id=(attributes)
     unless attributes.blank?
-      self.to_user_id = attributes[:id]
+      self.to_user_id = attributes[:id].to_i
     end
   end
 
@@ -94,6 +94,10 @@ class Bill < ActiveRecord::Base
     update_attribute(:state, "canceled")
   end
 
+  def expose!
+    update_attribute(:state, "exposed")
+  end
+
   def direction user
     if user == to_user
       "in"
@@ -107,8 +111,8 @@ class Bill < ActiveRecord::Base
   private
 
   def update_state!
-    if state == "pending" && !to_user.blank? && !to_contact.blank?
-      self.state = "exposed"
-    end
+    #if state == "pending" && !to_user.blank? && !to_contact.blank?
+    #  self.state = "exposed"
+    #end
   end
 end

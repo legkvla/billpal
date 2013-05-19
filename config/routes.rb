@@ -50,6 +50,7 @@ Billpal::Application.routes.draw do
         member do
           post :pay
           post :cancel
+          post :expose
         end
         resources :items, namespace: :bills
       end

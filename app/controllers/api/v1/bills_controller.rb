@@ -31,6 +31,14 @@ class Api::V1::BillsController < ApiController
     redirect_to(api_v1_bill_path(bill))
   end
 
+  def expose
+    bill = Bill.find(params[:id])
+
+    bill.expose!
+
+    redirect_to(api_v1_bill_path(bill))
+  end
+
   def update
     bill = current_user.bills.find(params[:id])
 
