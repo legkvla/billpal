@@ -75,40 +75,40 @@ angular
     '$routeProvider',
     (r) ->
       r.when '/profile',
-        templateUrl: '/templates/profile_page.html.erb'
+        templateUrl: '/templates/profile_page.html'
 
       r.when '/balance',
-        templateUrl: '/templates/balance.html.erb'
+        templateUrl: '/templates/balance.html'
       r.when '/dashboard',
-        templateUrl: '/templates/bills.html.erb'
+        templateUrl: '/templates/bills.html'
         controller: 'BillsController'
 
       r.when '/dashboard/transfers_in',
-        templateUrl: '/templates/transfers_in.html.erb'
+        templateUrl: '/templates/transfers_in.html'
         controller: 'TransfersController'
 
       r.when '/dashboard/transfers_out',
-        templateUrl: '/templates/transfers_out.html.erb'
+        templateUrl: '/templates/transfers_out.html'
         controller: 'TransfersController'
 
       r.when '/dashboard/people',
-        templateUrl: '/templates/people.html.erb'
+        templateUrl: '/templates/people.html'
         controller: 'PeopleController'
 
       r.when '/dashboard/bill_templates',
-        templateUrl: '/templates/bill_templates.html.erb'
+        templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
         r.when '/dashboard/bills_canceled',
-        templateUrl: '/templates/bills_canceled.html.erb'
+        templateUrl: '/templates/bills_canceled.html'
         controller: 'BillTemplatesController'
 
         r.when '/dashboard/bills_sent',
-        templateUrl: '/templates/bills_sent.html.erb'
+        templateUrl: '/templates/bills_sent.html'
         controller: 'BillTemplatesController'
 
         r.when '/dashboard/bills_payd',
-        templateUrl: '/templates/bills_payd.html.erb'
+        templateUrl: '/templates/bills_payd.html'
         controller: 'BillTemplatesController'
 
       r.when '/:any',
