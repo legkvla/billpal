@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
 	end
 
   def title
-    'John'
+    'I am'
   end
 
   def notifications_count
