@@ -2,7 +2,7 @@
 
 class Bill < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items
+  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items_attributes
 
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
@@ -14,9 +14,11 @@ class Bill < ActiveRecord::Base
 
   has_many :items
 
-  accepts_nested_attributes_for :items
+  accepts_nested_attributes_for :items, reject_if: proc {|attrs| attrs[:title].blank?}, allow_destroy: true
 
   monetize :amount_cents, as: :amount
+
+  validates_presence_of :from_contact_id
 
   def create_payment(payment_method)
     if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "pending"
