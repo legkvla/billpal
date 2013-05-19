@@ -61,7 +61,7 @@
 								<td ng-bind="bill.title"></td>
 								<td ng-bind="bill.created_at | date"></td>
 								<td ng-bind="bill.pay_until | date"></td>
-                              <td ng-bind="bill.to_user.full_name + ' ' + bill.to_user.last_name"></td>
+                              <td ng-bind="bill.to_user.first_name + ' ' + bill.to_user.last_name"></td>
 								<td ng-bind="bill.amount_cents / 100 | currency"></td>
 								<td style="text-align:center;">
 									<div class="btn-group">
@@ -110,7 +110,7 @@
 								<td ng-bind="bill.title"></td>
 								<td ng-bind="bill.created_at | date"></td>
 								<td ng-bind="bill.pay_until | date"></td>
-                              <td ng-bind="bill.to_user.full_name + ' ' + bill.to_user.last_name"></td>
+                              <td ng-bind="bill.to_user.first_name + ' ' + bill.to_user.last_name"></td>
 								<td ng-bind="bill.amount_cents / 100 | currency"></td>
 								<td style="text-align:center;">
 									<div class="btn-group">
