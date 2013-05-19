@@ -55,11 +55,11 @@
                   <div class="btn-group" ng-class="{ open: dropdownOpen }">
                     <button class="btn btn-mini btn-default" ng-click="dropdownOpen = !dropdownOpen"><i class="icon-cog"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Выставить</a></li>
+                      <li><a ng-href="bill.$expose()">Выставить</a></li>
                       <li><a href="#">Просмотреть</a></li>
                       <li><a ng-click="createBill(bill)">Копировать</a></li>
                       <li class="divider"></li>
-                      <li><a href="#">Отменить</a></li>
+                      <li><a ng-href="bill.$cancel()">Отменить</a></li>
                     </ul>
                   </div></td>
               </tr>
