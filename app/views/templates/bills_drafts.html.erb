@@ -46,17 +46,17 @@
               <tbody>
              <tr ng-repeat="bill in bills | filter:{state:'pending'}">
                 <td ng-bind="bill.id"></td>
-                <td contenteditable ng-model="bill.title"></td>
+                <td><a ng-href="/dashboard/show_bill/{{bill.id}}" ng-bind="bill.title"></a></td>
                 <td ng-bind="bill.created_at | date"></td>
                 <td ng-bind="bill.pay_until | date"></td>
                <td>{{bill.to_user.first_name}} {{bill.to_user.last_name}}</td>
-                <td contenteditable ng-model="bill.amount" ng-bind="bill.amount_cents / 100 | currency"></td>
+                <td ng-bind="bill.amount_cents / 100 | currency"></td>
                 <td style="text-align:center;">
                   <div class="btn-group" ng-class="{ open: dropdownOpen }">
                     <button class="btn btn-mini btn-default" ng-click="dropdownOpen = !dropdownOpen"><i class="icon-cog"></i></button>
                     <ul class="dropdown-menu">
-                      <li><a ng-href="bill.$expose()">Выставить</a></li>
-                      <li><a href="#">Просмотреть</a></li>
+                      <li><a ng-click="bill.$expose()">Выставить</a></li>
+                      <li><a ng-href="/dashboard/show_bill/{{bill.id}}">Просмотреть</a></li>
                       <li><a ng-click="createBill(bill)">Копировать</a></li>
                       <li class="divider"></li>
                       <li><a ng-href="bill.$cancel()">Отменить</a></li>
