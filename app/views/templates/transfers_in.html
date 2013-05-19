@@ -1,15 +1,13 @@
-		<!-- Заголовок -->
 		<div class="container-fluid">
 			<div class="row-fluid">
-
 				<div class="area-top clearfix">
 					<div class="pull-left header">
 						<h3 class="title">
-							<i class="icon-table"></i>
-							Входящие платежи переводы
+							<i class="icon-double-angle-right icon-2x"></i>
+							Переводы
 						</h3>
 						<h5>
-							Управление исходящими платежами
+							Управление переводами
 						</h5>
 					</div>
 
@@ -17,73 +15,85 @@
 						<li class="sparkline-row">
 							<h4 class="blue"><span>Получено</span> 847 руб.</h4>
 						</li>
+						<li class="sparkline-row">
+							<h4 class="blue"><span>Отправлено</span> 9 000 руб.</h4>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 
-
-
 		<div class="container-fluid padded">
-
-			<div class="action-nav-normal">
-				<div class="row-fluid">
-					<div class="span2 action-nav-button">
-						<a href="/transfers" title="Новый платеж">
-							<i class="icon-file-alt"></i>
-							<span>Новый платеж</span>
-						</a>
-						<span class="triangle-button red"><i class="icon-plus"></i></span>
-					</div>
-
-
-					<div class="span2 action-nav-button disabled">
-						<a ng-href="/dashboard/transfers_out" title="Messages">
-							<i class="icon-comments-alt"></i>
-							<span>Отправленные</span>
-						</a>
-						<span class="label label-black">14</span>
-					</div>
-
-					<div class="span2 action-nav-button">
-						<a ng-href="/dashboard/transfers_in" title="Files">
-							<i class="icon-folder-open-alt"></i>
-							<span>Полученные</span>
-						</a>
-						<span class="label label-black">14</span>
-					</div>
+			<div class="row-fluid">
+				<div class="span3" style="margin-bottom: 20px">
+					<a href="/transfers" class="btn btn-green"><i class="icon-plus-sign"></i> Новый перевод</a>
 				</div>
 			</div>
 
 			<div class="row-fluid">
-
-				<!-- Полученные платежи -->
-				<div class="span12">
+				<div class="span6">
 					<div class="box">
-						<div class="box-header"><span class="title">Полученные платежи</span></div>
+						<div class="box-header"><span class="title">Созданные платежи</span></div>
 						<div class="box-content">
-							<!-- find me in partials/data_tables_custom -->
+							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped">
+								<thead>
+									<tr>
+										<th><div>Дата создания</div></th>
+										<th><div>Сумма</div></th>
+										<th><div>Получатель</div></th>
+										<th><div></div></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>01/12/13</td>
+										<td>17 000 руб.</td>
+										<td>Алексей Петрович</td>
+										<td style="text-align:center;">
+											<div class="btn-group">
+												<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+												<ul class="dropdown-menu">
+													<li><a href="#">Action</a></li>
+													<li><a href="#">Another action</a></li>
+													<li><a href="#">Something else here</a></li>
+													<li class="divider"></li>
+													<li><a href="#">Separated link</a></li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
-							<div id="dataTables">
-
-								<table cellpadding="0" cellspacing="0" border="0" class="dTable responsive dataTable">
+					<div class="span6">
+						<div class="box">
+							<div class="box-header"><span class="title">Отправленные платежи</span></div>
+							<div class="box-content">
+								<table cellpadding="0" cellspacing="0" border="0" class="table table-striped">
 									<thead>
 										<tr>
-											<th><div>Дата получения</div></th>
+											<th><div>Дата отправления</div></th>
 											<th><div>Сумма</div></th>
-											<th><div>Отправитель</div></th>
+											<th><div>Получатель</div></th>
 											<th><div></div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>01\12\13</td>
-											<td>17 000 руб.0</td>
+											<td>01/12/13</td>
+											<td>17 000 руб.</td>
 											<td>Алексей Петрович</td>
 											<td style="text-align:center;">
 												<div class="btn-group">
-													<button class="btn btn-mini btn-default"><i class="icon-copy"></i></button>
-
+													<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+													<ul class="dropdown-menu">
+														<li><a href="#">Копировать</a></li>
+														<li class="divider"></li>
+														<li><a href="#">Отменить</a></li>
+													</ul>
 												</div></td>
 											</tr>
 										</tbody>
@@ -92,5 +102,100 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+
+					<div class="row-fluid">
+						<div class="span6">
+							<div class="box">
+								<div class="box-header"><span class="title">Успешные платежи</span></div>
+								<div class="box-content">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped">
+										<thead>
+											<tr>
+												<th><div>Дата получения</div></th>
+												<th><div>Сумма</div></th>
+												<th><div>Получатель</div></th>
+												<th><div></div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>01/12/13</td>
+												<td>17 000 руб.</td>
+												<td>Алексей Петрович</td>
+												<td style="text-align:center;">
+													<div class="btn-group">
+														<button class="btn btn-mini btn-default"><i class="icon-copy"></i></button>
+
+													</div></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<!-- отмененные платежи -->
+							<div class="span6">
+								<div class="box">
+									<div class="box-header"><span class="title">Отмененные платежи</span></div>
+									<div class="box-content">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped">
+											<thead>
+												<tr>
+													<th><div>Дата отмены</div></th>
+													<th><div>Сумма</div></th>
+													<th><div>Получатель</div></th>
+													<th><div></div></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>01/12/13</td>
+													<td>17 000 руб.</td>
+													<td>Алексей Петрович</td>
+													<td style="text-align:center;">
+														<div class="btn-group">
+															<button class="btn btn-mini btn-default"><i class="icon-copy"></i></button>
+
+														</div></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row-fluid">
+								<div class="span12">
+									<div class="box">
+										<div class="box-header blue"><span class="title">Полученные платежи</span></div>
+										<div class="box-content">
+											<table cellpadding="0" cellspacing="0" border="0" class="table table-striped">
+												<thead>
+													<tr>
+														<th><div>Дата получения</div></th>
+														<th><div>Сумма</div></th>
+														<th><div>Отправитель</div></th>
+														<th><div></div></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>01/12/13</td>
+														<td>17 000 руб.</td>
+														<td>Алексей Петрович</td>
+														<td style="text-align:center;">
+															<div class="btn-group">
+																<button class="btn btn-mini btn-default"><i class="icon-copy"></i></button>
+
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
