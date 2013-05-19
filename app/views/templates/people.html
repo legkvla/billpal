@@ -10,8 +10,8 @@
 				</div>
 			</div>
 
-			<div class="grid-fluid" id="grid-example">
-				<div class="block" id="contact-example">
+			<div class="grid-fluid padded">
+				<div class="block">
 					<div class="contact-card">
 						<div class="header">
 							<span class="avatar">
@@ -27,7 +27,8 @@
 							</h5>
 
 							<div class="controls">
-								<button class="btn btn-mini btn-default">Edit</button> <button class="btn btn-mini btn-green">Send invoice</button> <button class="btn btn-mini btn-green">Send transfer</button>
+								<div style="margin-bottom: 20px"><a href="#" class="btn btn-mini btn-default">Редактировать</a></div>
+								<div><a href="#" class="btn btn-mini btn-green">Отправить инвойс</a> <a href="#" class="btn btn-mini btn-green">Отправить трасфер</a></div>
 							</div>
 
 							<hr>
@@ -43,7 +44,7 @@
 
 
 							<div class="history">
-								<h5>History</h5>
+								<h5>История</h5>
 								<table class="table">
 									<tr>
 										<td width="2%">
@@ -74,10 +75,6 @@
 			</div>
 		</div>
 	<script>
-		for( var i = 0; i < 10; i++ ) {
-			$( '#contact-example' ).clone( ).appendTo( '#grid-example' )
-		}
-
 		$( '.contact-card .header' ).click( function( ) {
 			$( this ).siblings( '.expanded' ).slideToggle( 300 );
 		});
