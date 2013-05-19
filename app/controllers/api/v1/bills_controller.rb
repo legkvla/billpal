@@ -50,9 +50,13 @@ class Api::V1::BillsController < ApiController
   end
 
   def show
-    bill = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user).find(params[:id])
+    bill = Bill.find(params[:id])
 
-    render json: bill.as_json.merge(fine: bill.fine)
+    render json: bill.as_json.merge(
+        fine: bill.fine,
+        to_user: bill.to_user.as_json,
+        from_user: bill.from_user.as_json
+    )
   end
 
   def index
