@@ -3,15 +3,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	require 'uuidtools'
 
 	def facebook
-		oauthorize "Facebook"
+		oauthorize 'Facebook'
 	end
 
 	def twitter
-		oauthorize "Twitter"
+		oauthorize 'Twitter'
 	end
 
 	def vkontakte
-		oauthorize "Vkontakte"
+		oauthorize 'Vkontakte'
+	end
+
+	def gplus
+		oauthorize 'Gplus'
 	end
 
 	def passthru
@@ -32,11 +36,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def find_for_ouath(provider, access_token, resource=nil)
 		user, email, name, uid, auth_attr = nil, nil, nil, {}
 		case provider
-			when "Facebook"
+			when 'Facebook'
 				uid = access_token['uid']
 				email = access_token['info']['email']
 				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :secret => nil, :name => access_token['info']['name'], :link => access_token['info']['urls']['Facebook'] }
-			when "Twitter"
+			when 'Twitter'
 				uid = access_token['uid']
 				name = access_token['info']['name']
 				nickname = access_token['info']['nickname']
@@ -45,6 +49,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 				uid = access_token['uid']
 				name = access_token['info']['name']
 				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :name => name, :link => access_token['info']['urls']['Vkontakte'] }
+			when 'Gplus'
+				uid = access_token['uid']
+				name = access_token['info']['name']
+				auth_attr = { :uid => uid, :token => access_token['credentials']['token'], :name => name, :link => access_token['info']['Google+'] }
 			else
 				raise 'Provider #{provider} not handled'
 		end

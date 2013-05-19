@@ -224,6 +224,7 @@ Devise.setup do |config|
 	config.omniauth :facebook, '166408100194872', '51853c528cbb37746d02d136d97b0dcf'
 	config.omniauth :twitter, 'bGmG5t7aVRfr7HaZUorbw', 'kUikkJsAVrCIUB296x5m9TuFxr6M0kFywX43n7z04'
 	config.omniauth :vkontakte, '3654198', '4mmhmh9oNVi0N6sR94f7'
+	config.omniauth :gplus, '196698519119', 'TToRxDHLN0OiKnZgTIGrkSl-'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
