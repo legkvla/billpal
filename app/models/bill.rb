@@ -65,6 +65,16 @@ class Bill < ActiveRecord::Base
     update_attribute(:state, "canceled")
   end
 
+  def direction user
+    if user == to_user
+      "in"
+    elsif user == from_user
+      "out"
+    else
+      nil
+    end
+  end
+
   private
 
   def update_state!
