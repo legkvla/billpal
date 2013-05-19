@@ -1,0 +1,60 @@
+	<div class="main-content">
+		<div class="container-fluid">
+			<form action="POST" class="form-horizontal">
+				<h4>Мои данные</h4>
+
+				<div class="control-group">
+					<label class="control-label">Имя</label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Фамилия</label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">E-mail</label>
+					<div class="controls">
+						<input type="text" class="input-medium" value="<%= current_user.email %>">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Телефон</label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+
+				<hr>
+
+				<h4>Сменить пароль</h4>
+
+				<div class="control-group">
+					<label class="control-label">Текущий пароль</label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Новый пароль</label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+
+				<hr>
+
+				<ul class="action-nav-normal rounded">
+					<li class="action-nav-button">
+						<a href="#" class="tip" title="" data-original-title="New Project">
+							<i class="icon-credit-card"></i>
+						</a>
+					</li>
+				</ul>
+
+			</form>
+		</div>
+	</div>
