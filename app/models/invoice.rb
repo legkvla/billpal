@@ -1,6 +1,9 @@
 # Просто счет (просить деньги)
 
 class Invoice < ActiveRecord::Base
+
+	attr_accessible :amount_cents, :from_user_id, :from_contact_id, :to_user_id, :to_contact_id, :state
+
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
 
