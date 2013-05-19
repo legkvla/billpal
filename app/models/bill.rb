@@ -41,7 +41,7 @@ class Bill < ActiveRecord::Base
       )
 
       if payment.valid? && payment.save
-        charge = Paysio::Charge.create(
+        Paysio::Charge.create(
             amount: amount_cents.to_f.round * 100, #FIX: for paysio
             payment_system_id: payment_method,
             order_id: payment.id,
