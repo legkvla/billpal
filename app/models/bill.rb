@@ -20,8 +20,14 @@ class Bill < ActiveRecord::Base
 
   validates_presence_of :from_contact_id
 
+  before_save :update_state!
+
+  after_save do
+    from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
+  end
+
   def create_payment(payment_method)
-    if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "pending"
+    if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "exposed"
       params = {
           amount: amount_cents,
           paymentable: self,
@@ -57,5 +63,13 @@ class Bill < ActiveRecord::Base
 
   def cancel!
     update_attribute(:state, "canceled")
+  end
+
+  private
+
+  def update_state!
+    if state == "pending" && !to_user.blank? && !to_contact.blank?
+      self.state = "exposed"
+    end
   end
 end

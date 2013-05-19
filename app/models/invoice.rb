@@ -14,6 +14,10 @@ class Invoice < ActiveRecord::Base
 
   monetize :amount_cents, as: :amount
 
+  after_save do
+    from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
+  end
+
   before_create do
     self.slug = SecureRandom.base64(135)
   end

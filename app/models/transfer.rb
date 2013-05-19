@@ -21,6 +21,10 @@ class Transfer < ActiveRecord::Base
     self.slug = SecureRandom.base64(135) if self.to_contact.email?
   end
 
+  after_save do
+    from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
+  end
+
   state_machine :state, initial: :pending do
     around_transition do |transfer, transition, block|
       ActiveRecord::Base.transaction do

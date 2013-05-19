@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable
 
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me,
+                  :first_name, :last_name
 
   has_many :authorizations, :dependent => :destroy
   has_many :contacts, uniq: true
@@ -15,6 +16,14 @@ class User < ActiveRecord::Base
   has_many :invoices, foreign_key: :from_user_id, uniq: true
   has_many :notifications, uniq: true
   has_many :withdrawals, as: :withdrawable, uniq: true
+
+  has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: 'followed_id',
+           class_name:  'Relationship',
+           dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
 
   after_create do
     self.contacts.create!({uid: self.id, kind: :internal, user_id: self.id}, without_protection: true)

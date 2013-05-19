@@ -44,6 +44,8 @@ Billpal::Application.routes.draw do
 
       resources :withdrawals
 
+      resources :relationships
+
       resources :bills do
         member do
           post :pay

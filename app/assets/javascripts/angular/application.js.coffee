@@ -229,3 +229,9 @@ angular
     ($scope) ->
       #
   ])
+  .controller('InvoicesController', [
+    '$scope'
+    ($scope) ->
+
+
+  ])
