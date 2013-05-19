@@ -7,7 +7,7 @@ class Api::V1::BillsController < ApiController
     bill = current_user.bills.new attributes.merge(:from_contact_id => current_user.contact.try(:id).to_i)
 
     if bill.save
-      render json: bill
+      redirect_to(api_v1_bill_path(bill))
     else
       format_errors bill.errors.as_json
     end
@@ -42,13 +42,13 @@ class Api::V1::BillsController < ApiController
   def show
     bill = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user).find(params[:id])
 
-    render json: bill.as_json
+    render json: bill.as_json.merge(fine: bill.fine)
   end
 
   def index
     bills = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user)
 
-    bills_json = bills.map{|b| b.as_json.merge(direction: b.direction(current_user))}.as_json
+    bills_json = bills.map{|b| b.as_json.merge(fine: b.fine, direction: b.direction(current_user))}.as_json
 
     render json: bills_json
   end
