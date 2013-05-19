@@ -16,44 +16,13 @@
       </a>
     </li>
 
-    <li class="dark-nav" ng-class="activeClass(['/dashboard/transfers_out', '/dashboard/transfers_in'])">
+    <li ng-class="activeClass('/dashboard')">
       <span class="glow"></span>
-      <a class="accordion-toggle"
-         ng-class="{ collapsed: transfersCollapsed }"
-         ng-click="transfersCollapsed = !transfersCollapsed"
-      >
-        <i class="icon-beaker icon-2x"></i>
-        <span>
-          Переводы
-          <i class="icon-caret-down"></i>
-        </span>
+      <a ng-href="/dashboard/transfers_out">
+        <i class="icon-dashboard icon-2x"></i>
+        <span>Переводы</span>
       </a>
-      <ul 
-          class="collapse"
-          ng-class="{ in: !transfersCollapsed }"
-        >
-
-      <li ng-class="">
-        <a href="/transfers">
-          <i class="icon-hand-up"></i> Новый
-        </a>
-      </li>
-
-      <li ng-class="activeClass('/dashboard/transfers_out')">
-        <a ng-href="/dashboard/transfers_out">
-          <i class="icon-hand-up"></i> Исходящие
-        </a>
-      </li>
-
-      <li ng-class="activeClass('/dashboard/transfers_in')">
-        <a ng-href="/dashboard/transfers_in">
-          <i class="icon-beaker"></i> Входящие
-        </a>
-      </li>
-    </ul>
-
-  </li>
-
+    </li>  
 
   <li ng-class="activeClass('/dashboard/people')">
     <span class="glow"></span>
