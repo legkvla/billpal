@@ -1,5 +1,5 @@
 class Withdrawal < ActiveRecord::Base
-  extend ActiveMerchant::Billing
+  include ActiveMerchant::Billing
 
   attr_accessible :kind_cd, :params, :payment_kind_cd, :state, :uid, :withdrawable_id, :withdrawable_type
 
@@ -13,7 +13,7 @@ class Withdrawal < ActiveRecord::Base
   #TODO: hack but it's fast
   before_save do
     gateway = JustGateway.new(login: Settings.just_gateway.login, secret: Settings.just_gateway.secret)
-    self.uid = gateway.make_payment(self.amount.to_f, self.kind, self.params)['result']
+    self.uid = gateway.make_payment(self.amount.to_f, self.kind, self.params).params['result']
   end
 
   #state_machine :state, initial: :pending do
