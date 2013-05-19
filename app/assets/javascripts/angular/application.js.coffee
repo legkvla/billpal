@@ -99,6 +99,18 @@ angular
         templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
+        r.when '/dashboard/bills_canceled',
+        templateUrl: '/templates/bills_canceled.html'
+        controller: 'BillTemplatesController'
+
+        r.when '/dashboard/bills_sent',
+        templateUrl: '/templates/bills_sent.html'
+        controller: 'BillTemplatesController'
+
+        r.when '/dashboard/bills_payd',
+        templateUrl: '/templates/bills_payd.html'
+        controller: 'BillTemplatesController'
+
       r.when '/:any',
         template: '<h5>Загрузка</h5>'
         controller: 'RedirectController'
