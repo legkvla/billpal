@@ -298,3 +298,7 @@
 .document form label {
 	font-size: 1.3em;
 }
+
+.muted a {
+	color: rgb(153, 153, 153);
+}

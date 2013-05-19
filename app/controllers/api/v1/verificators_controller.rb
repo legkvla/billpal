@@ -13,7 +13,7 @@ class Api::V1::VerificatorsController < ApiController
           code = (Random.rand(899_999) + 100_000).to_s
           session[:phone_numbers][phone_number] = code
           #TODO
-          #SendSms.perform_async(phone_number, I18n.t('verificators.phone_number', code: code))
+          SendSms.perform_async(phone_number, I18n.t('verificators.phone_number', code: code))
 
           render json: {status: 'ok', code: code}
         end
