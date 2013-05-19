@@ -315,6 +315,7 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.1)
       rack (>= 1.0)
+    wisepdf (1.2.10)
 
 PLATFORMS
   ruby
@@ -375,3 +376,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   uuidtools
+  wisepdf
