@@ -56,13 +56,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>00001</td>
-								<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-								<td>29\12\13</td>
-								<td>30\12\13 </td>
+                            <tr ng-repeat="bill in bills | filter:{state:'exposed',direction:'out'}">
+								<td ng-bind="bill.id"></td>
+								<td ng-bind="bill.title"></td>
+								<td ng-bind="bill.created_at | date"></td>
+								<td ng-bind="bill.pay_until | date"></td>
 								<td>Дмитрий Шульга</td>
-								<td>30000 руб.</td>
+								<td ng-bind="bill.amount_cents / 100 | currency"></td>
 								<td style="text-align:center;">
 									<div class="btn-group">
 										<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
@@ -74,61 +74,6 @@
 										</ul>
 									</div></td>
 								</tr>
-								<tr>
-									<td>00002</td>
-									<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-									<td>29\12\13</td>
-									<td>30\12\13 </td>
-									<td>Дмитрий Шульга</td>
-									<td>30000 руб.</td>
-									<td style="text-align:center;">
-										<div class="btn-group">
-											<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-											<ul class="dropdown-menu">
-												<li><a href="#">Просмотреть</a></li>
-												<li><a href="#">Копировать</a></li>
-												<li class="divider"></li>
-												<li><a href="#">Напомнить</a></li>
-											</ul>
-										</div></td>
-									</tr>
-
-									<tr>
-										<td>00002</td>
-										<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-										<td>29\12\13</td>
-										<td>30\12\13 </br><span class="label label-warning">Последний день</span></td>
-										<td>Дмитрий Шульга</td>
-										<td>30000 руб.</td>
-										<td style="text-align:center;">
-											<div class="btn-group">
-												<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-												<ul class="dropdown-menu">
-													<li><a href="#">Просмотреть</a></li>
-													<li><a href="#">Копировать</a></li>
-													<li class="divider"></li>
-													<li><a href="#">Напомнить</a></li>
-												</ul>
-											</div></td>
-										</tr>
-										<tr>
-											<td>00003</td>
-											<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-											<td>29\12\13</td>
-											<td>30\12\13 </br> <span class="label label-important">Просрочено на 5 дней</span></td>
-											<td>Дмитрий Шульга</td>
-											<td class="status-error">30000 руб. </br>+ 30% * 5 </br> = </br>75000 руб. </td>
-											<td style="text-align:center;">
-												<div class="btn-group">
-													<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-													<ul class="dropdown-menu">
-														<li><a href="#">Просмотреть</a></li>
-														<li><a href="#">Копировать</a></li>
-														<li class="divider"></li>
-														<li><a href="#">Напомнить</a></li>
-													</ul>
-												</div></td>
-											</tr>
 										</tbody>
 									</table>
 									<div class="table-footer"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Первая</a><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Предыдущая</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="DataTables_Table_0_next">Следующая</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="DataTables_Table_0_last">Последняя</a></div></div>
@@ -160,13 +105,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>00001</td>
-								<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-								<td>29\12\13</td>
-								<td>30\12\13 </td>
+                            <tr ng-repeat="bill in bills | filter:{state:'exposed',direction:'in'}">
+								<td ng-bind="bill.id"></td>
+								<td ng-bind="bill.title"></td>
+								<td ng-bind="bill.created_at | date"></td>
+								<td ng-bind="bill.pay_until | date"></td>
 								<td>Дмитрий Шульга</td>
-								<td>30000 руб.</td>
+								<td ng-bind="bill.amount_cents / 100 | currency"></td>
 								<td style="text-align:center;">
 									<div class="btn-group">
 										<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
@@ -178,61 +123,6 @@
 										</ul>
 									</div></td>
 								</tr>
-								<tr>
-									<td>00002</td>
-									<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-									<td>29\12\13</td>
-									<td>30\12\13 </td>
-									<td>Дмитрий Шульга</td>
-									<td>30000 руб.</td>
-									<td style="text-align:center;">
-										<div class="btn-group">
-											<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-											<ul class="dropdown-menu">
-												<li><a href="#">Просмотреть</a></li>
-												<li><a href="#">Копировать</a></li>
-												<li class="divider"></li>
-												<li><a href="#">Напомнить</a></li>
-											</ul>
-										</div></td>
-									</tr>
-
-									<tr>
-										<td>00002</td>
-										<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-										<td>29\12\13</td>
-										<td>30\12\13 </br><span class="label label-warning">Последний день</span></td>
-										<td>Дмитрий Шульга</td>
-										<td>30000 руб.</td>
-										<td style="text-align:center;">
-											<div class="btn-group">
-												<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-												<ul class="dropdown-menu">
-													<li><a href="#">Просмотреть</a></li>
-													<li><a href="#">Копировать</a></li>
-													<li class="divider"></li>
-													<li><a href="#">Напомнить</a></li>
-												</ul>
-											</div></td>
-										</tr>
-										<tr>
-											<td>00003</td>
-											<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-											<td>29\12\13</td>
-											<td>30\12\13 </br> <span class="label label-important">Просрочено на 5 дней</span></td>
-											<td>Дмитрий Шульга</td>
-											<td class="status-error">30000 руб. </br>+ 30% * 5 </br> = </br>75000 руб. </td>
-											<td style="text-align:center;">
-												<div class="btn-group">
-													<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-													<ul class="dropdown-menu">
-														<li><a href="#">Просмотреть</a></li>
-														<li><a href="#">Копировать</a></li>
-														<li class="divider"></li>
-														<li><a href="#">Напомнить</a></li>
-													</ul>
-												</div></td>
-											</tr>
 										</tbody>
 									</table>
 									<div class="table-footer"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Первая</a><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Предыдущая</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="DataTables_Table_0_next">Следующая</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="DataTables_Table_0_last">Последняя</a></div></div>
