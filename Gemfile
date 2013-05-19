@@ -94,3 +94,5 @@ gem 'unicorn'
 gem 'awesome_print', require: 'ap'
 
 gem 'wisepdf'
+
+gem 'omniauth-gplus'

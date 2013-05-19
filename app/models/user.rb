@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
                   :first_name, :last_name
 
   has_many :authorizations, :dependent => :destroy
-  has_many :contacts, uniq: true
+  has_many :contacts, uniq: true, :dependent => :destroy
   has_many :transfers, foreign_key: :from_user_id, uniq: true
   has_many :payments, uniq: true
   has_many :balances, uniq: true

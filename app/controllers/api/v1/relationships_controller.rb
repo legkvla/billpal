@@ -14,7 +14,7 @@ class Api::V1::RelationshipsController < ApiController
           })
     end
 
-    current_user.relationships.build(followed_id: user.id)
+    current_user.relationships.create(followed_id: user.id)
 
     render nothing: true
   end

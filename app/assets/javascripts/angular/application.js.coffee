@@ -82,7 +82,7 @@ angular
   ])
 
 angular
-  .module('billpal', ['transfers'])
+  .module('billpal', ['transfers', 'ui.select2'])
   .config([
     '$locationProvider',
     ($locationProvider) ->
@@ -217,11 +217,30 @@ angular
   .controller('BillsController', [
     '$scope'
     'Bill'
-    ($scope, Bill) ->
+    '$location'
+    ($scope, Bill, $location) ->
       $scope.bills = Bill.query {}
 
+      $scope.new_bill =
+        items_attributes: []
+        to_user_attributes: {}
+
       $scope.createBill = (bill) ->
-        $scope.bills.push(if bill then new Bill(bill).$save() else new Bill(created_at: new Date()).$save())
+        bill = if bill then new Bill(bill) else new Bill(created_at: new Date())
+
+        $scope.bills.push(bill)
+        bill.$save()
+
+        $location.path('/dashboard')
+
+
+      $scope.userSelect =
+        allowClear: true
+        ajax:
+          url: Routes.api_v1_relationships_path()
+          data: () -> {}
+          results: (data, page) -> { results: { id: datum.id, text: "#{datum.first_name} #{datum.last_name}" } for datum in data }
+
   ])
   .controller('TransfersController', [
     '$scope'

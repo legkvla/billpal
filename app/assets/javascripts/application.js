@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require select2.min
+//= require select2_locale_ru
 //= require angular/angular.min
 //= require angular/i18n/angular-locale_ru-ru
 //= require angular/angular-resource.min
+//= require angular/select2
 //= require routes
 //= require_tree .
