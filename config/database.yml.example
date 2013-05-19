@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: billpal_development
   pool: 5
-  username: billpall
+  username: billpal
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
