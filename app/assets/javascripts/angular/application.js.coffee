@@ -74,6 +74,9 @@ angular
   .config([
     '$routeProvider',
     (r) ->
+      r.when '/profile',
+        templateUrl: '/templates/profile_page.html'
+        
       r.when '/dashboard',
         templateUrl: '/templates/bills.html'
         controller: 'BillsController'
