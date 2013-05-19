@@ -10,7 +10,6 @@ class Bill < ActiveRecord::Base
   belongs_to :user_from, class_name: 'User'
 
   has_many :payments, as: :paymentable, uniq: true
-  has_many :withdrawals, as: :withdrawable, uniq: true
 
   has_many :items
 
