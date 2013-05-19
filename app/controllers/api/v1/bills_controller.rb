@@ -55,7 +55,8 @@ class Api::V1::BillsController < ApiController
     render json: bill.as_json.merge(
         fine: bill.fine,
         to_user: bill.to_user.as_json,
-        from_user: bill.from_user.as_json
+        from_user: bill.from_user.as_json,
+        items: bill.items.as_json
     )
   end
 
