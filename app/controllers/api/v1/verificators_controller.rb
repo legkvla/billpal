@@ -1,4 +1,5 @@
 class Api::V1::VerificatorsController < ApiController
+  include ParsersHelper
   include ValidatorsHelper
 
   def verificate

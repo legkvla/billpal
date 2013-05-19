@@ -115,7 +115,46 @@ angular
         template: '<h5>Загрузка</h5>'
         controller: 'RedirectController'
 
+      r.when '/:any/:kind',
+        template: '<h5>Загрузка</h5>'
+        controller: 'RedirectController'
+
+      r.when '/:any/:kind/:of',
+        template: '<h5>Загрузка</h5>'
+        controller: 'RedirectController'
+
+      r.when '/:any/:kind/:of/:shit',
+        template: '<h5>Загрузка</h5>'
+        controller: 'RedirectController'
+
   ])
+  .directive 'contenteditable', ->
+    require: '?ngModel'
+    link: (scope, element, attr, ngModel) ->
+      return unless ngModel
+
+      if element[0].tagName.toLowerCase() == 'ul'
+        ngModel.$render = ->
+          val = ngModel.$viewValue
+          if val
+            element.html('')
+            for line in val.split /\n/
+              element.append(angular.element('<li></li>').text(line))
+          else
+            element.html('')
+            element.append(angular.element('<li></li>'))
+
+        getVal = -> (angular.element(li).text() for li in element.children()).join('\n').trim()
+
+        element.bind 'keydown', (event) -> event.preventDefault() if not getVal() and event.keyCode is 8
+        element.bind 'input', -> scope.$apply -> ngModel.$setViewValue(getVal())
+      else
+        ngModel.$render = -> element.text(ngModel.$viewValue)
+
+        getVal = -> element.text()
+
+        element.bind 'keydown', (event) -> event.preventDefault() if event.keyCode is 13
+        element.bind 'input', -> scope.$apply -> ngModel.$setViewValue(getVal())
   .controller('RedirectController', [
     '$location'
     ($location) ->
@@ -131,12 +170,16 @@ angular
   .factory('Bill', [
     '$resource'
     ($resource) ->
-      $resource(Routes.api_v1_bill_path(':id'))
+      $resource(Routes.api_v1_bill_path(':id').replace(/\.json$/, ''))
   ])
   .controller('BillsController', [
     '$scope'
-    ($scope) ->
-      #
+    'Bill'
+    ($scope, Bill) ->
+      $scope.bills = Bill.query {}
+
+      $scope.createBill = (bill) ->
+        $scope.bills.push(if bill then new Bill(bill).$save() else new Bill(created_at: new Date()).$save())
   ])
   .controller('TransfersController', [
     '$scope'

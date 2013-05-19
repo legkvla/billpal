@@ -3,19 +3,21 @@
 
 <div class="span6 offset3"
      ng-app="transfers"
+>
+  <!--
      ng-controller="TransfersController"
      ng-init="setPaysioKey(<%= Settings.paysio.key.to_json %>); <%= %<setStep('checkReceiverContacts')> if user_signed_in? %>"
->
+-->
 
   <div class="padded">
 
     <div class="login box" style="margin-top: 80px;">
 
       <div class="box-header">
-        <span class="title">Осуществление платежа</span>
+        <span class="title">Осуществление вывода</span>
       </div>
 
-      <div class="box-content padded" ng-switch="step">
+      <div class="box-content padded"><!-- ng- switch="step"
          <form class="separate-sections" ng-submit="verificatePhone()" ng-switch-when="verificatePhone">
 
           <div class="input-prepend">
@@ -49,8 +51,9 @@
               Подтвердить <i class="icon-ok"></i>
             </button>
           </div>
-        </form>
-        <form class="separate-sections" ng-submit="checkReceiverContacts()" ng-switch-when="checkReceiverContacts">
+        </form -->
+        <form class="separate-sections"><!--  ng- submit="checkReceiverContacts()" -->
+              <!-- ng- switch- when="checkReceiverContacts" -->
           <div>
             Введите сумму платежа
           </div>
@@ -58,10 +61,10 @@
           <div class="input-prepend">
             <span class="add-on">
             </span>
-            <input type="text" placeholder="0.00" ng-model="data.charge_amount" required>
+            <input type="text" placeholder="0.00" ng-model="data.withdrawal_amount" required>
           </div>
 
-          <div>
+          <!-- div>
             Введите контактные данные получателя платежа
           </div>
 
@@ -92,19 +95,52 @@
               </div>
           </div>
 
-          <div class="error" ng-show="contactsNotChecked" ng-bind="contactsNotChecked"></div>
+          <div class="error" ng-show="contactsNotChecked" ng-bind="contactsNotChecked"></div -->
 
-          <center ng-show="data.contact_type" title="Оплатить">
-            <input type="image" src="/assets/payments/mastercard.png">
-            <input type="image" src="/assets/payments/qiwi.png">
-            <input type="image" src="/assets/payments/sms.png">
-            <input type="image" src="/assets/payments/visa.png">
-            <input type="image" src="/assets/payments/webmoney.png">
-            <input type="image" src="/assets/payments/yandex-money.png">
+          <center title="Оплатить">
+            <img src="/assets/payments/mastercard.png" ng-click="data.withdrawal_to = 'mastercard'">
+            <img src="/assets/payments/qiwi.png" ng-click="data.withdrawal_to = 'qiwi'">
+            <img src="/assets/payments/sms.png" ng-click="data.withdrawal_to = 'sms'">
+            <img src="/assets/payments/visa.png" ng-click="data.withdrawal_to = 'visa'">
+            <img src="/assets/payments/webmoney.png" ng-click="data.withdrawal_to = 'webmoney'">
+            <img src="/assets/payments/yandex-money.png" ng-click="data.withdrawal_to = 'yandex-money'">
           </center>
+
+          <p></p>
+
+          <div ng-switch="data.withdrawal_to">
+            <div class="input-prepend" ng-switch-when="visa">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер карты visa" ng-model="data.card_number">
+            </div>
+
+            <div class="input-prepend" ng-switch-when="mastercard">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер карты mastercard" ng-model="data.card_number">
+            </div>
+
+            <div class="input-prepend" ng-switch-when="sms">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер мобильного телефона" ng-model="data.phone_number">
+            </div>
+
+            <div class="input-prepend" ng-switch-when="qiwi">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер кошелька qiwi" ng-model="data.qiwi_number">
+            </div>
+
+            <div class="input-prepend" ng-switch-when="webmoney">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер кошелька webmoney" ng-model="data.webmoney_number">
+            </div>
+
+            <div class="input-prepend" ng-switch-when="yandex-money">
+              <span class="add-on"><i class="icon-th"></i></span>
+              <input type="text" placeholder="номер кошелька яндекс.денег" ng-model="data.yandexmoney_number">
+            </div>
         </form>
 
-        <div ng-switch-when="paysioRequest"><h5>Загрузка</h5></div>
+        <!-- div ng-switch-when="paysioRequest"><h5>Загрузка</h5></div -->
 
 
       </div>

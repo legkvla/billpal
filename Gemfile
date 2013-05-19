@@ -94,4 +94,6 @@ gem 'uuidtools'
 
 gem 'unicorn'
 
-gem 'awesome_print', :require => 'ap'
+gem 'awesome_print', require: 'ap'
+
+gem 'wisepdf'

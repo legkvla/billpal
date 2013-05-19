@@ -14,8 +14,6 @@
             <h4 class="blue"><span>Итого</span> 847 руб.</h4>
           </li>
         </ul>
-
-
       </div>
     </div>
   </div>
@@ -26,7 +24,7 @@
 
     <div class="row-fluid">
       <div class="span2 action-nav-button">
-        <a href="<%= new_invoice_path %>" title="New Invoice">
+        <a ng-click="createBill()" title="New Invoice">
           <i class="icon-file-alt"></i>
           <span>Новый инвойс</span>
         </a>
@@ -85,28 +83,27 @@
                 <th><div>ID</div></th>
                 <th><div>Название</div></th>
                 <th><div>Дата создания</div></th>
-                <th><div>Оплата по плану</div></th>
+                <!-- th><div>Оплата по плану</div></th -->
                 <th><div>Контакт</div></th>
                 <th><div>Общая сумма</div></th>
                 <th><div></div></th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>00001</td>
-                <td>Создание интернет магазина и продвижение его в поисковых системах</td>
-                <td>29\12\13</td>
-                <td>30\12\13</td>
-                <td>Дмитрий Шульга</td>
-                <td>30000 руб.</td>
+              <tr ng-repeat="bill in bills">
+                <td ng-bind="bill.id"></td>
+                <td contenteditable ng-model="bill.title"></td>
+                <td ng-bind="bill.created_at | date"></td>
+                <!-- td>date</td -->
+                <td ng-bind="bill.to_user_name"></td>
+                <td contenteditable ng-model="bill.amount"></td>
                 <td style="text-align:center;">
-                  <div class="btn-group">
-                    <button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                  <div class="btn-group" ng-class="{ open: dropdownOpen }">
+                    <button class="btn btn-mini btn-default" ng-click="dropdownOpen = !dropdownOpen"><i class="icon-cog"></i></button>
                     <ul class="dropdown-menu">
                       <li><a href="#">Выставить</a></li>
-                      <li><a href="#">Редактировать</a></li>
                       <li><a href="#">Просмотреть</a></li>
-                      <li><a href="#">Копировать</a></li>
+                      <li><a ng-click="createBill(bill)">Копировать</a></li>
                       <li class="divider"></li>
                       <li><a href="#">Отменить</a></li>
                     </ul>
