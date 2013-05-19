@@ -4,9 +4,9 @@
 			<!--	<a href="#" class="btn btn-default"><i class="icon-edit"></i> Редактировать</a>
 				<a href="#" class="btn btn-default"><i class="icon-copy"></i> Копировать</a>
 				<a href="#" class="btn btn-red"><i class="icon-remove-sign"></i> Отменить</a> -->
-				<a href="#" class="btn btn-gold"><i class="icon-bell-alt"></i> Напомнить</a>
-			<!--	<a href="#" class="btn btn-lightblue"><i class="icon-share-alt"></i> Выставить</a> -->
-				<a href="#" class="btn btn-green"><i class="icon-money"></i> Оплатить</a>
+				<!-- a href="#" class="btn btn-gold"><i class="icon-bell-alt"></i> Напомнить</a -->
+				<a ng-click="bill.$expose()" class="btn btn-lightblue" ng-show="bill.state == 'pending'"><i class="icon-share-alt"></i> Выставить</a>
+				<a ng-click="payBill(bill)" class="btn btn-green" ng-show="bill.state == 'exposed'"><i class="icon-money"></i> Оплатить</a>
 			</div>
 			<div class="pull-right">
 				<a href="#" class="btn btn-blue">Загрузить PDF</a>
@@ -16,20 +16,22 @@
 		<div class="document">
 			<div class="row">
 				<div class="span4 pull-left valign-middle">
-					<h2 class="inline-block valign-middle">Верстка 5 страниц</h2>
-					<!-- <span class="inline-block valign-middle label label-gray" style="margin-left: 10px;">черновик</span>
-					<span class="inline-block valign-middle label label-green" style="margin-left: 10px;">оплачен</span>
-					<span class="inline-block valign-middle label label-red" style="margin-left: 10px;">просрочен</span> -->
-					<span class="inline-block valign-middle label label-blue" style="margin-left: 10px;">к оплате</span>
-				<!--	<span class="inline-block valign-middle label label-black" style="margin-left: 10px;">отменен</span> -->
+					<h2 class="inline-block valign-middle" ng-bind="bill.title"></h2>
+                  <span ng-switch="bill.state">
+                        <span ng-switch-when="pending" class="inline-block valign-middle label label-gray" style="margin-left: 10px;">черновик</span>
+                        <span ng-switch-when="paid" class="inline-block valign-middle label label-green" style="margin-left: 10px;">оплачен</span>
+                        <!-- <span class="inline-block valign-middle label label-red" style="margin-left: 10px;">просрочен</span> -->
+                        <span ng-switch-when="exposed" class="inline-block valign-middle label label-blue" style="margin-left: 10px;">к оплате</span>
+                        <span ng-switch-when="canceled" class="inline-block valign-middle label label-black" style="margin-left: 10px;">отменен</span>
+                      </span>
 				</div>
 				<div class="pull-right valign-middle">
-					<h4>Инвойс #000001</h4>
+					<h4>Инвойс #{{bill.id}}</h4>
 					<div>
-						<strong>Дата выставления</strong>: 18/05/2013
+						<strong>Дата выставления</strong>: {{ bill.created_at | date }}
 					</div>
 					<div>
-						<strong>Дата оплаты</strong>: 18/06/2013
+						<strong>Срок оплаты</strong>: {{ bill.pay_until | date }}
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -40,22 +42,17 @@
 			<div class="row">
 				<div class="span3 inline-block">
 					<h4>Кому: </h4>
-					<h5><em>Human After All</em></h5>
+					<h5><em>{{ bill.to_user.first_name }} {{ bill.to_user.last_name }}</em></h5>
 
-					<address>
-						Eugene Rodionov <br>
-						Invoice street <br>
-						Invoice city CA 923232<br>
-						Russian Federation
+					<address>{{bill.to_user.phone}}
 					</address>
 				</div>
 				<div class="span3 inline-block">
 					<h4>От кого: </h4>
-					<h5><em>Something about us</em></h5>
+                  <h5><em>{{ bill.from_user.first_name }} {{ bill.from_user.last_name }}</em></h5>
 
-					<address>
-						Invoice address
-					</address>
+                  <address>{{bill.from_user.phone}}
+                  </address>
 				</div>
 			</div>
 
@@ -71,41 +68,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Work it, make it better, do it faster, makes us stronger, more than ever hour after our work is never over. Work it harder, make it, do it faster, makes us, more than ever hour after our work is never over.</td>
-						<td>100.00</td>
-						<td>5</td>
-						<td>500.00</td>
+					<tr ng-repeat="item in bill.items">
+						<td ng-bind="item.title"></td>
+						<td ng-bind="item.unit_price / 100 | currency"></td>
+						<td ng-bind="item.count"></td>
+						<td ng-bind="item.unit_price * item.count / 100 | currency"></td>
 					</tr>
-<!--					<tr>
-						<td>There's not much I know about you, Fear will always make you blind, But the answer is in clear view, It's amazing what you'll find face to face.</td>
-						<td>100.00</td>
-						<td>4</td>
-						<td>400.00</td>
-					</tr> -->
 
 					<tr class="summary">
 						<td colspan="2" class="text-right">
 							Всего
 						</td>
-						<td colspan="2" class="text-right">
-							5
+						<td colspan="2" class="text-right" ng-bind="bill.items.length">
 						</td>
 					</tr>
-					<tr class="summary no-border error">
+					<!-- tr class="summary no-border error">
 						<td colspan="2" class="text-right">
 							Пенни (5 дней по 10%)
 						</td>
 						<td colspan="2" class="text-right">
 							250.00
 						</td>
-					</tr>
+					</tr -->
 					<tr class="summary no-border">
 						<td colspan="2" class="text-right">
-							Всего
+                          Итого к оплате
 						</td>
-						<td colspan="2" class="text-right">
-							650.00
+						<td colspan="2" class="text-right" ng-bind="bill.amount_cents / 100 | currency">
 						</td>
 					</tr>
 				</tbody>
