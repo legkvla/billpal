@@ -3,7 +3,7 @@
 class Bill < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   attr_accessible :title, :description, :to_user, :to_user_id,
-                  :amount_cents, :from_contact_id, :items_attributes, :daily_penalty
+                  :amount_cents, :from_contact_id, :items_attributes, :daily_penalty, :to_user_attributes
 
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
