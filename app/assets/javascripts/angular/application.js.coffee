@@ -212,7 +212,21 @@ angular
   .factory('Bill', [
     '$resource'
     ($resource) ->
-      $resource(Routes.api_v1_bill_path(':id').replace(/\.json$/, ''))
+      $resource(Routes.api_v1_bill_path(':id').replace(/\.json$/, '') + '/:kind',
+        { id: '@id' },
+        pay:
+          method: 'POST'
+          params:
+            kind: 'pay'
+        cancel:
+          method: 'POST'
+          params:
+            kind: 'cancel'
+        expose:
+          method: 'POST'
+          params:
+            kind: 'expose'
+      )
   ])
   .controller('BillsController', [
     '$scope'
