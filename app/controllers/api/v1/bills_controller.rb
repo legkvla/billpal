@@ -48,6 +48,8 @@ class Api::V1::BillsController < ApiController
   def index
     bills = Bill.where('from_user_id = ? OR to_user_id = ?', current_user, current_user)
 
-    render json: bills.as_json
+    bills_json = bills.map{|b| b.as_json.merge(direction: b.direction(current_user))}.as_json
+
+    render json: bills_json
   end
 end
