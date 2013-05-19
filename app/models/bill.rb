@@ -2,7 +2,7 @@
 
 class Bill < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id
+  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items
 
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
@@ -13,6 +13,8 @@ class Bill < ActiveRecord::Base
   has_many :payments, as: :paymentable, uniq: true
 
   has_many :items
+
+  accepts_nested_attributes_for :items
 
   monetize :amount_cents, as: :amount
 
