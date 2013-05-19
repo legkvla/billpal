@@ -97,7 +97,7 @@ angular
       r.when '/balance',
         templateUrl: '/templates/balance.html'
       r.when '/dashboard',
-        templateUrl: '/templates/bills.html'
+        templateUrl: '/templates/bills_drafts.html'
         controller: 'BillsController'
 
       r.when '/dashboard/transfers_in',
@@ -116,16 +116,20 @@ angular
         templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
-        r.when '/dashboard/bills_canceled',
+      r.when '/dashboard/bills_drafts',
+        templateUrl: '/templates/bills_drafts.html'
+        controller: 'BillTemplatesController'
+
+      r.when '/dashboard/bills_canceled',
         templateUrl: '/templates/bills_canceled.html'
         controller: 'BillTemplatesController'
 
-        r.when '/dashboard/bills_sent',
+      r.when '/dashboard/bills_sent',
         templateUrl: '/templates/bills_sent.html'
         controller: 'BillTemplatesController'
 
-        r.when '/dashboard/bills_payd',
-        templateUrl: '/templates/bills_payd.html'
+      r.when '/dashboard/bills_paid',
+        templateUrl: '/templates/bills_paid.html'
         controller: 'BillTemplatesController'
 
       r.when '/:any',
