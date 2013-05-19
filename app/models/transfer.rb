@@ -1,6 +1,7 @@
 # Перевод (я перевожу свои деньги кому-то)
 
 class Transfer < ActiveRecord::Base
+  attr_accessible :from_user, :to_user, :amount_cents, :from_contact_id, :to_contact_id
   include Payments::Validations
 
   belongs_to :to_contact, class_name: 'Contact'
@@ -10,7 +11,6 @@ class Transfer < ActiveRecord::Base
   belongs_to :from_user, class_name: 'User'
 
   has_many :payments, as: :paymentable, uniq: true
-  has_many :withdrawals, as: :withdrawable, uniq: true
 
   validate :amount_greater_that_zero
   validate :receiver_cant_be_sender

@@ -24,6 +24,8 @@ Billpal::Application.routes.draw do
   resources :templates
 
   namespace :management do
+    root to: 'management#index'
+
     check_for_admin = lambda { |request| request.env['warden'].authenticate? && request.env['warden'].user.admin? }
     constraints check_for_admin do
       mount Sidekiq::Web => '/sidekiq', as: :sidekiq
