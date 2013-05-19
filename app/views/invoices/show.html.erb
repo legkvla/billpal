@@ -24,9 +24,9 @@
                 <span class="inline-block valign-middle label label-black" style="margin-left: 10px;">отменен</span>
             </div>
             <div class="pull-right valign-middle">
-                <h4>Инвойс "<%= @invoice.id %>"</h4>
+                <h4>Инвойс <%= @invoice.id %></h4>
                 <div>
-                    <strong>Дата выставления</strong>: "<%= @invoice.created_at.to_date %>"
+                    <strong>Дата выставления</strong>: <%= @invoice.created_at.to_date %>
                 </div>
                 <div>
                     <strong>Дата оплаты</strong>: 15/05/2013
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="span3 inline-block">
                 <h4>Кому: </h4>
-                <h5><em>"<%= @invoice.to_user %>"</em></h5>
+                <h5><em><%= @invoice.to_user %></em></h5>
 
                 <address>
                     Eugene Rodionov <br>
@@ -51,7 +51,7 @@
             </div>
             <div class="span3 inline-block">
                 <h4>От кого: </h4>
-                <h5><em>"<%= @invoice.from_user %>"</em></h5>
+                <h5><em><%= @invoice.from_user %></em></h5>
 
                 <address>
                   <%= @invoice.from_contact %>"
