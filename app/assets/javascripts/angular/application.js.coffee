@@ -12,6 +12,23 @@ angular
         $httpProvider.defaults.headers.common['X-CSRF-Token'] = meta.content if meta.name == 'csrf-token'
   ])
 
+  .controller('WithdrawalsController', [
+    '$scope'
+    '$resource'
+    ($scope, $resource) ->
+      $scope.data = {}
+
+      $scope.withdraw = ->
+        $resource(Routes.api_v1_withdrawals_path()).save
+          amount: $scope.data.withdrawal_amount
+          payment_method: $scope.data.withdrawal_to
+          payment_data: $scope.data.param
+          (response) ->
+            $scope.notWithdrawn = null
+            location.href = '/dashboard'
+          (response) ->
+            $scope.notWithdrawn = response.data.status
+  ])
   .controller('TransfersController', [
     '$scope'
     '$resource'

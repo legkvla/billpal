@@ -21,9 +21,10 @@
         </li>
       </ul>
 
-      <ul class="nav pull-right">
-        <li class="active"><a ng-href="/balance"><i class="icon-circle-blank"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
-      </ul>
+      <% if current_user.balance.present? %>
+          <ul class="nav pull-right">
+            <li class="active"><a ng-href="/balance"><i class="icon-circle-blank"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
+          </ul>
       <% end %>
 
     </div>
