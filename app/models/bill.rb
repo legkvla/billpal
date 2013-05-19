@@ -41,8 +41,12 @@ class Bill < ActiveRecord::Base
   end
 
   def to_user_id=(attributes)
-    unless attributes.blank?
-      self.to_user_id = attributes[:id].to_i
+    if attributes.kind_of? Integer
+      write_attribute :to_user_id, attributes
+    else
+      unless attributes.blank?
+        self.to_user_id = attributes['id'].to_i
+      end
     end
   end
 
