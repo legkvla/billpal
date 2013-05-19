@@ -2,7 +2,7 @@
 
 class Bill < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items_attributes
+  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items_attributes, :daily_penalty
 
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
@@ -19,6 +19,7 @@ class Bill < ActiveRecord::Base
   monetize :amount_cents, as: :amount
 
   validates_presence_of :from_contact_id
+  validates :daily_penalty, :numericality => {:greater_than_or_equal_to => 0}
 
   before_save :update_state!
 
@@ -26,10 +27,23 @@ class Bill < ActiveRecord::Base
     from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
   end
 
+  def fine
+    daily_penalty.to_i.to_f / 100 * amount_cents.to_i * overdue_days
+  end
+
+  def overdue_days
+    days = (Date.today - (pay_until || Date.today)).to_i
+    if days > 0
+      days
+    else
+      0
+    end
+  end
+
   def create_payment(payment_method)
     if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "exposed"
       params = {
-          amount: amount_cents,
+          amount_cents: amount_cents + fine,
           paymentable: self,
           payment_kind: :paysio,
           kind: payment_method,
@@ -41,8 +55,8 @@ class Bill < ActiveRecord::Base
       )
 
       if payment.valid? && payment.save
-        charge = Paysio::Charge.create(
-            amount: amount_cents.to_f.round * 100, #FIX: for paysio
+        Paysio::Charge.create(
+            amount: payment.amount_cents, #FIX: for paysio
             payment_system_id: payment_method,
             order_id: payment.id,
             return_url: root_url,
