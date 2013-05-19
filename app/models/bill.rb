@@ -47,8 +47,7 @@ class Bill < ActiveRecord::Base
   end
 
   def pay!
-    from_user.balance.update_attributes(:amount, from_user.balance + amount_cents)
-    to_user.balance.update_attributes(:amount, from_user.balance - amount_cents)
+    from_user.balance.update_attribute(:amount_cents, from_user.balance.amount_cents + amount_cents)
     update_attribute(:state, "paid")
   end
 end
