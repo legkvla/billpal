@@ -126,23 +126,23 @@ angular
 
       r.when '/dashboard/bills_drafts',
         templateUrl: '/templates/bills_drafts.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_canceled',
         templateUrl: '/templates/bills_canceled.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_sent',
         templateUrl: '/templates/bills_sent.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_paid',
         templateUrl: '/templates/bills_paid.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bill_new',
         templateUrl: '/templates/bill_new.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/:any',
         template: '<h5>Загрузка</h5>'
@@ -199,6 +199,15 @@ angular
     ($scope, $location) ->
       $scope.activeClass = (path) ->
         active: if path.filter? then path.filter((v) -> v == $location.path()).length > 0 else $location.path() == path
+
+      $scope.invoiceClass = null
+
+      $scope.invoiceClassSelector = (selector) ->
+        'lightblue' if selector == $scope.invoiceClass
+
+      $scope.setInvoiceFilter = (selector) ->
+        $scope.invoiceClass = selector
+
   ])
   .factory('Bill', [
     '$resource'

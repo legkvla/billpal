@@ -37,20 +37,20 @@
                 <th><div>ID</div></th>
                 <th><div>Название</div></th>
                 <th><div>Дата создания</div></th>
-                <!-- th><div>Оплата по плану</div></th -->
+                <th><div>Оплата по плану</div></th>
                 <th><div>Контакт</div></th>
                 <th><div>Общая сумма</div></th>
                 <th><div></div></th>
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="bill in bills">
+              <tr ng-repeat="bill in bills | filter:{state:'pending'}">
                 <td ng-bind="bill.id"></td>
                 <td contenteditable ng-model="bill.title"></td>
                 <td ng-bind="bill.created_at | date"></td>
-                <!-- td>date</td -->
+                <td ng-bind="bill.pay_until | date"></td>
                 <td ng-bind="bill.to_user_name"></td>
-                <td contenteditable ng-model="bill.amount"></td>
+                <td contenteditable ng-model="bill.amount" ng-bind="bill.amount_cents / 100 | currency"></td>
                 <td style="text-align:center;">
                   <div class="btn-group" ng-class="{ open: dropdownOpen }">
                     <button class="btn btn-mini btn-default" ng-click="dropdownOpen = !dropdownOpen"><i class="icon-cog"></i></button>

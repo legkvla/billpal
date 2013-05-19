@@ -7,7 +7,7 @@
             <li class="dropdown user-avatar" ng-class="{ open: profileDropdownOpen }">
               <a href="#" class="dropdown-toggle" ng-click="profileDropdownOpen = !profileDropdownOpen">
                   <span>
-                    <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-dashboard"></i></span>
+                    <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-caret-down"></i></span>
                     <% if current_user.notifications_count > 0 %>
                         <span class="badge badge-dark-red"><%= current_user.notifications_count %></span>
                     <% end %>
@@ -23,7 +23,7 @@
 
           <% if current_user.balance.present? %>
               <ul class="nav pull-right">
-                <li class="active"><a ng-href="/balance"><i class="icon-circle-blank"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
+                <li class="active"><a ng-href="/balance"><i class="icon-money"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
               </ul>
           <% end %>
       <% end %>
