@@ -100,8 +100,11 @@ angular
       r.when '/invoice_new',
         templateUrl: '/templates/invoice_new.html'
 
-      r.when '/invoice/show/:id',
+      r.when '/dashboard/show_bill/:id',
         templateUrl: '/templates/invoice_show.html'
+        controller: ['$scope', '$routeParams', 'Bill', ($scope, $routeParams, Bill) ->
+          $scope.bill = Bill.get id: $routeParams.id
+        ]
 
       r.when '/dashboard',
         templateUrl: '/templates/bills_drafts.html'

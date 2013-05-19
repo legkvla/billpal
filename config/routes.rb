@@ -7,7 +7,7 @@ Billpal::Application.routes.draw do
                  registrations: 'registrations'
              }
 
-  get 'dashboard(/:any_action)' => 'dashboard#index', as: :dashboard
+  get 'dashboard(/:any_action(/:some_other_action))' => 'dashboard#index', as: :dashboard
 
   resources :transfers do
     member do
