@@ -5,6 +5,15 @@ class Withdrawal < ActiveRecord::Base
 
   belongs_to :withdrawable, polymorphic: true
 
+  as_enum :kind, credit_card: 0, phone: 1, test: 9_999_999
+  as_enum :payment_kind, just_gateway: 9_001
+
+  #TODO: hack but it's fast
+  before_save do
+    gateway = JustGateway.new(login: Settings.just_gateway.login, secret: Settings.just_gateway.secret)
+    self.uid = gateway.make_payment(self.amount.to_f, self.kind, self.params)['result']
+  end
+
   #state_machine :state, initial: :pending do
   #  around_transition do |payment, transition, block|
   #    ActiveRecord::Base.transaction do

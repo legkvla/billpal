@@ -12,6 +12,9 @@ defaults: &defaults
   paysio:
     key: 'pk_8AivNdCA3oIHSWvNpyTDZr8rU6eG4OltI1DgRNt'
     secret: 'IjhH5BfD7qH2BygsnlflTj6RvvGjnXAnm2HpTn0'
+  just_gateway:
+    login: '102619'
+    secret: '52624d7b8247a5916ed8b927560f829e'
 
 development:
   <<: *defaults

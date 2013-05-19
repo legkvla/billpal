@@ -74,7 +74,7 @@ module ActiveMerchant #:nodoc:
         }
 
         response = MultiJson.load ssl_post("#{self.live_url}/api/rest/v1/#{method}", Oj.dump(request, mode: :compat))
-        if response['result'].present?
+        if response['result'].present? && response['result'].is_a?(Hash)
           result = response['result']
         else
           result = response
