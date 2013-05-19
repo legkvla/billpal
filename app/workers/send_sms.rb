@@ -11,18 +11,18 @@ class SendSms
           target: phone_number
       }).body
 
-      #if result['output'].present? && result['output']['result'].present? &&
-      #    result['output']['result']['sms'].present? && result['output']['result']['sms']['id'].present?
-      #
-      #  SendSms.create!(
-      #      {
-      #          phone_number: phone_number,
-      #          message: message,
-      #          contact_id: contact_id,
-      #          user_id: contact.user_id,
-      #          uid: result['output']['result']['sms']['id']
-      #      }, without_protection: true)
-      #end
+      if result['output'].present? && result['output']['result'].present? &&
+          result['output']['result']['sms'].present? && result['output']['result']['sms']['id'].present?
+
+        SendSms.create!(
+            {
+                phone_number: phone_number,
+                message: message,
+                contact_id: contact_id,
+                user_id: contact.user_id,
+                uid: result['output']['result']['sms']['id']
+            }, without_protection: true)
+      end
     end
   end
 
