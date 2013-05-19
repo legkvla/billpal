@@ -1,0 +1,67 @@
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="area-top clearfix">
+					<div class="pull-left header">
+						<h3 class="title">
+							<i class="icon-tasks icon-2x"></i>
+							Баланс: <%= current_user.balance.amount %> рублей
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid padded">
+			<div class="row-fluid">
+				<div class="span5" style="margin-bottom: 20px">
+					<a href="#" class="btn btn-large btn-green"><i class="icon-plus-sign"></i> Добавить кошелек</a>
+					<a href="#" class="btn btn-large btn-blue"><i class="icon-share-alt"></i> Вывод денег</a>
+				</div>
+			</div>
+
+			<h4>Кошельки</h4>
+            
+			<form action="POST" class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/mastercard.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/visa.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/qiwi.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/sms.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/webmoney.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label"><img src="/assets/payments/yandex-money.png"></label>
+					<div class="controls">
+						<input type="text" class="input-medium">
+					</div>
+				</div>
+				<div class="form-actions">
+	            <button type="submit" class="btn btn-blue">Save changes</button>
+	          </div>
+
+			</form>
+		</div>
+	</div>

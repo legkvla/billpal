@@ -5,48 +5,24 @@
       <% if current_user.present? %>
       <ul class="nav full pull-right">
         <li class="dropdown user-avatar" ng-class="{ open: profileDropdownOpen }">
-
-          <!-- the dropdown has a custom user-avatar class, this is the small avatar with the badge -->
-
           <a href="#" class="dropdown-toggle" ng-click="profileDropdownOpen = !profileDropdownOpen">
-                  <span>
-                    <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-caret-down"></i></span>
-                    <% if current_user.notifications_count > 0 %>
-                        <span class="badge badge-dark-red"><%= current_user.notifications_count %></span>
-                    <% end %>
-                  </span>
+              <span>
+                <%= image_tag gravatar_url(current_user.email, 32), class: "menu-avatar" %> <span><%= current_user.title %> <i class="icon-caret-down"></i></span>
+                <% if current_user.notifications_count > 0 %>
+                    <span class="badge badge-dark-red"><%= current_user.notifications_count %></span>
+                <% end %>
+              </span>
           </a>
 
           <ul class="dropdown-menu">
-
-            <!-- the first element is the one with the big avatar, add a with-image class to it -->
-
-            <!--<li class="with-image">-->
-              <!--<div class="avatar">-->
-                <!--<%= image_tag gravatar_url(current_user.email, 32) %>-->
-              <!--</div>-->
-              <!--<span>John Smith</span>-->
-            <!--</li>-->
-
-            <!--<li class="divider"></li>-->
-
             <li><a ng-href="/profile"><i class="icon-user"></i> <span>Профиль</span></a></li>
-<!--            <li>
-              <a href="#">
-                <i class="icon-envelope"></i>
-                <span>Messages</span>
-                <% if current_user.notifications_count > 0 %>
-                    <span class="label label-dark-red pull-right"><%= current_user.notifications_count %></span>
-                <% end %>
-              </a>
-            </li> -->
             <li><a href="<%= destroy_user_session_path %>"><i class="icon-off"></i> <span>Выход</span></a></li>
           </ul>
         </li>
       </ul>
 
       <ul class="nav pull-right">
-        <li class="active"><a ng-href="/balance" title="Go home"><i class="icon-home"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
+        <li class="active"><a ng-href="/balance"><i class="icon-circle-blank"></i> Баланс: <%= current_user.balance.amount %>р.</a></li>
       </ul>
       <% end %>
 
