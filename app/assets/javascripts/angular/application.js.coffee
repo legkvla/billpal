@@ -100,7 +100,7 @@ angular
       r.when '/invoice_new',
         templateUrl: '/templates/invoice_new.html'
 
-      r.when '/invoice/show/1',
+      r.when '/invoice/show/:id',
         templateUrl: '/templates/invoice_show.html'
 
       r.when '/dashboard',
