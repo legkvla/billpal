@@ -126,23 +126,23 @@ angular
 
       r.when '/dashboard/bills_drafts',
         templateUrl: '/templates/bills_drafts.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_canceled',
         templateUrl: '/templates/bills_canceled.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_sent',
         templateUrl: '/templates/bills_sent.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bills_paid',
         templateUrl: '/templates/bills_paid.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/dashboard/bill_new',
         templateUrl: '/templates/bill_new.html'
-        controller: 'BillTemplatesController'
+        controller: 'BillsController'
 
       r.when '/:any',
         template: '<h5>Загрузка</h5>'
