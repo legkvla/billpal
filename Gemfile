@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'http://ce60427f:b2c8c27e@www.mikeperham.com/rubygems/'
 
 gem 'rails', '3.2.13'
 

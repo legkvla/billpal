@@ -15,7 +15,7 @@
           <i class="icon-pencil item-2x"></i>
           <span>Черновики</span>
         </a>
-        <span class="label label-black">14</span>
+        <span class="label label-black" ng-bind="count('pending')"></span>
       </div>
 
       <div class="span2 action-nav-button {{invoiceClassSelector('invoiced')}}" ng-click="setInvoiceFilter('invoiced')">
@@ -23,7 +23,7 @@
           <i class="icon-share-alt item-2x"></i>
           <span>Выставленные</span>
         </a>
-        <span class="label label-black">14</span>
+        <span class="label label-black" ng-bind="count('exposed')"></span>
       </div>
 
       <div class="span2 action-nav-button {{invoiceClassSelector('paid')}}" ng-click="setInvoiceFilter('paid')">
@@ -31,6 +31,7 @@
           <i class="icon-ok item-2x"></i>
           <span>Оплаченные</span>
         </a>
+        <span class="label label-black" ng-bind="count('paid')"></span>
       </div>
 
       <div class="span2 action-nav-button {{invoiceClassSelector('canceled')}}" ng-click="setInvoiceFilter('canceled')">
@@ -38,6 +39,7 @@
           <i class="icon-undo item-2x"></i>
           <span>Отмененные</span>
         </a>
+        <span class="label label-black" ng-bind="count('canceled')"></span>
       </div>
     </div>
   </div>

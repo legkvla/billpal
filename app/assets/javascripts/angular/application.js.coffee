@@ -238,8 +238,18 @@ angular
     '$scope'
     'Bill'
     '$location'
-    ($scope, Bill, $location) ->
+    '$filter'
+    ($scope, Bill, $location, $filter) ->
       $scope.bills = Bill.query {}
+
+      $scope.count = (state) ->
+        $filter('filter')($scope.bills, state: state).length
+
+      $scope.sum_cents = (filter) ->
+        data = $filter('filter')($scope.bills, filter)
+        acc = 0
+        acc += datum.amount_cents for datum in data
+        acc
 
       $scope.new_bill =
         items_attributes: []

@@ -14,12 +14,12 @@
 					<ul class="inline pull-right sparkline-box">
 
 						<li class="sparkline-row">
-							<h4 class="blue"><span>Вы ожидаете</span> 847 руб.</h4>
+							<h4 class="blue"><span>Вы ожидаете</span> {{ sum_cents({state:'exposed',direction:'out'}) / 100 | currency }}</h4>
 							
 						</li>
 
 						<li class="sparkline-row">
-							<h4 class="red"><span>От вас ждут</span> 223 руб.</h4>
+							<h4 class="red"><span>От вас ждут</span> {{ sum_cents({state:'exposed',direction:'in'}) / 100 | currency }}</h4>
 						</li>
 
 					</ul>
