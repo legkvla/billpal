@@ -40,7 +40,7 @@ class Bill < ActiveRecord::Base
     end
   end
 
-  def to_user=(attributes)
+  def to_user_id=(attributes)
     unless attributes.blank?
       self.to_user_id = attributes[:id]
     end
