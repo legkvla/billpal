@@ -2,7 +2,7 @@
   <div class="action-nav-normal">
 
     <div class="row-fluid">
-      <div class="span2 action-nav-button">
+      <div class="span2 action-nav-button {{invoiceClassSelector('new')}}" ng-click="setInvoiceFilter('new')">
         <a ng-href="/dashboard/bill_new" title="New Invoice">
           <i class="icon-plus-sign item-2x"></i>
           <span>Новый инвойс</span>
@@ -10,7 +10,7 @@
         <span class="triangle-button red"><i class="icon-plus"></i></span>
       </div>
 
-      <div class="span2 action-nav-button disabled">
+      <div class="span2 action-nav-button {{invoiceClassSelector('drafts')}}" ng-click="setInvoiceFilter('drafts')">
         <a ng-href="/dashboard/bills_drafts" title="Messages">
           <i class="icon-pencil item-2x"></i>
           <span>Черновики</span>
@@ -18,7 +18,7 @@
         <span class="label label-black">14</span>
       </div>
 
-      <div class="span2 action-nav-button">
+      <div class="span2 action-nav-button {{invoiceClassSelector('invoiced')}}" ng-click="setInvoiceFilter('invoiced')">
         <a ng-href="/dashboard/bills_sent" title="Files">
           <i class="icon-share-alt item-2x"></i>
           <span>Выставленные</span>
@@ -26,20 +26,20 @@
         <span class="label label-black">14</span>
       </div>
 
-      <div class="span2 action-nav-button">
+      <div class="span2 action-nav-button {{invoiceClassSelector('paid')}}" ng-click="setInvoiceFilter('paid')">
         <a ng-href="/dashboard/bills_paid" title="Users">
           <i class="icon-ok item-2x"></i>
           <span>Оплаченные</span>
         </a>
       </div>
 
-      <div class="span2 action-nav-button">
+      <div class="span2 action-nav-button {{invoiceClassSelector('canceled')}}" ng-click="setInvoiceFilter('canceled')">
         <a ng-href="/dashboard/bills_canceled" title="Friends">
           <i class="icon-undo item-2x"></i>
           <span>Отмененные</span>
         </a>
       </div>
     </div>
-
   </div>
-  <hr class="divider">
+</div>
+
