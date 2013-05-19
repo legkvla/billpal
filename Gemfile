@@ -5,20 +5,18 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 
-group :assets do
+
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 
   gem 'compass-rails'
-end
 
 gem 'jquery-rails'
 
-group :development, :production do
-  gem 'transaction_isolation'
-  gem 'pg_deadlock_retry', github: 'TimothyKlim/pg_deadlock_retry', ref: 'cd3d8e8'
-end
+
+gem 'transaction_isolation'
+gem 'pg_deadlock_retry', github: 'TimothyKlim/pg_deadlock_retry', ref: 'cd3d8e8'
 
 gem 'russian'
 
@@ -65,14 +63,13 @@ gem 'state_machine-audit_trail'
 
 gem 'paysio'
 
-group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
 
-  gem 'csscss'
+gem 'better_errors'
+gem 'binding_of_caller'
 
-  gem 'quiet_assets'
-end
+gem 'csscss'
+gem 'quiet_assets'
+
 
 gem 'simple_enum'
 
