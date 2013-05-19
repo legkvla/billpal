@@ -235,10 +235,11 @@ angular
 
 
       $scope.userSelect =
+        allowClear: true
         ajax:
           url: Routes.api_v1_relationships_path()
           data: () -> {}
-          results: (data, page) -> { results: data }
+          results: (data, page) -> { results: { id: datum.id, text: "#{datum.first_name} #{datum.last_name}" } for datum in data }
 
   ])
   .controller('TransfersController', [
