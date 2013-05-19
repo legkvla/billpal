@@ -49,7 +49,7 @@
                 <td contenteditable ng-model="bill.title"></td>
                 <td ng-bind="bill.created_at | date"></td>
                 <td ng-bind="bill.pay_until | date"></td>
-               <td ng-bind="bill.to_user.first_name + ' ' + bill.to_user.last_name"></td>
+               <td>{{bill.to_user.first_name}} {{bill.to_user.last_name}}</td>
                 <td contenteditable ng-model="bill.amount" ng-bind="bill.amount_cents / 100 | currency"></td>
                 <td style="text-align:center;">
                   <div class="btn-group" ng-class="{ open: dropdownOpen }">
