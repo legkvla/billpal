@@ -76,7 +76,9 @@ angular
     (r) ->
       r.when '/profile',
         templateUrl: '/templates/profile_page.html'
-        
+
+      r.when '/balance',
+        templateUrl: '/templates/balance.html'
       r.when '/dashboard',
         templateUrl: '/templates/bills.html'
         controller: 'BillsController'
