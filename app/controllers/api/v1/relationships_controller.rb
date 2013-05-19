@@ -4,7 +4,14 @@ class Api::V1::RelationshipsController < ApiController
   def create
     user = User.where(email: params[:email]).first
     if user.empty?
-      user = User.create(email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+      user = User.create(
+          {
+              email: params[:email],
+              first_name: params[:first_name],
+              last_name: params[:last_name],
+              password: SecureRandom.hex,
+              role: 'anonymous'
+          })
     end
 
     current_user.relationships.build(followed_id: user.id)
