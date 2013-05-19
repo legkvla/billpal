@@ -1,6 +1,8 @@
 class Api::V1::BillsController < ApiController
   def create
     params[:amount_cents] = 0
+    params[:to_user_attributes][:password] = "qwerty" unless params[:to_user_attributes].blank?
+
     attributes = params.dup
     %w[created_at action controller bill].each{ |k| attributes.delete k }
 
