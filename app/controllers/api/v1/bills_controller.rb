@@ -21,6 +21,14 @@ class Api::V1::BillsController < ApiController
     render json: charge.as_json
   end
 
+  def cancel
+    bill = Bill.find(params[:id])
+
+    bill.cancel!
+
+    redirect_to(api_v1_bill_path(bill))
+  end
+
   def update
     bill = current_user.bills.find(params[:id])
 
