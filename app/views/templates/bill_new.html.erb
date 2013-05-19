@@ -1,149 +1,160 @@
-	<div class="main-content">
-		<div class="container invoice-page">
-			<h3>Создать инвойс</h3>
-			<div class="document">
-				<form action="POST" class="form-horizontal">
-					<div class="control-group">
-						<label class="control-label">Название</label>
-						<div class="controls">
-							<select class="select2 input-medium" data-placeholder="Указать название">
-								<option value="id1">Работы по сайту</option>
-							</select>
-						</div>
-					</div>
+<div class="main-content" ng-controller="InvoicesController">
+  <div class="container invoice-page">
+    <h3>Создать инвойс</h3>
 
-					<div class="control-group">
-						<label class="control-label">Клиент</label>
-						<div class="controls">
-							<select class="select2 input-medium" data-placeholder="Выбрать клиента">
-								<option value="id1">Евгений Родионов</option>
-								<option value="id1">Евгений Родионов</option>
-								<option value="id1">Евгений Родионов</option>
-								<option value="id1">Евгений Родионов</option>
-								<option value="id1">Евгений Родионов</option>
-							</select>
-							<a href="#" class="btn btn-mini btn-green" style="height: 27px"><i class="icon-plus-sign"></i></a>
-							<a href="#" class="btn btn-mini btn-red" style="height: 27px"><i class="icon-minus-sign"></i></a>
-						</div>
-					</div>
+    <div class="document">
+      <form action="POST" class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label">Название</label>
 
-					<div class="control-group">
-						<h4><label class="control-label">Новый клиент</label></h4>
-					</div>
+          <div class="controls">
+            <select class="select2 input-medium" data-placeholder="Указать название">
+              <option value="id1">Работы по сайту</option>
+            </select>
+          </div>
+        </div>
 
-					<div class="control-group">
-						<label class="control-label">Имя</label>
-						<div class="controls">
-							<input type="text" class="input-medium">
-						</div>
-					</div>
+        <div class="control-group">
+          <label class="control-label">Клиент</label>
 
-					<div class="control-group">
-						<label class="control-label">Фамилия</label>
-						<div class="controls">
-							<input type="text" class="input-medium">
-						</div>
-					</div>
+          <div class="controls">
+            <select class="select2 input-medium" data-placeholder="Выбрать клиента">
+              <option value="id1">Евгений Родионов</option>
+              <option value="id1">Евгений Родионов</option>
+              <option value="id1">Евгений Родионов</option>
+              <option value="id1">Евгений Родионов</option>
+              <option value="id1">Евгений Родионов</option>
+            </select>
+            <a href="#" class="btn btn-mini btn-green" style="height: 27px"><i class="icon-plus-sign"></i></a>
+            <a href="#" class="btn btn-mini btn-red" style="height: 27px"><i class="icon-minus-sign"></i></a>
+          </div>
+        </div>
 
-					<div class="control-group">
-						<label class="control-label">E-mail</label>
-						<div class="controls">
-							<input type="text" class="input-medium">
-						</div>
-					</div>
+        <div class="control-group">
+          <h4><label class="control-label">Новый клиент</label></h4>
+        </div>
 
-					<div class="control-group">
-						<label class="control-label">Телефон</label>
-						<div class="controls">
-							<input type="text" class="input-medium">
-						</div>
-					</div>
+        <div class="control-group">
+          <label class="control-label">Имя</label>
+
+          <div class="controls">
+            <input type="text" class="input-medium">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Фамилия</label>
+
+          <div class="controls">
+            <input type="text" class="input-medium">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">E-mail</label>
+
+          <div class="controls">
+            <input type="text" class="input-medium">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Телефон</label>
+
+          <div class="controls">
+            <input type="text" class="input-medium">
+          </div>
+        </div>
 
 
-					<div class="control-group">
-						<label class="control-label">Дата оплаты</label>
-						<div class="controls">
-							<input type="text" class="input-medium" value="04/04/2013 (дефолтное значение, короче. +1 месяц?)">
-							<div style="display: none">
-								<table class="lined-calendar">
-									<thead>
-										<tr class="month" ng-hide="mini">
-											<th colspan="7">
-												<h2><a class="color-black"><i class="icon-left-dir"></i></a>{{date | date:'d MMMM yyyy'}}<a class="color-black"><i class="icon-right-dir"></i></a></h2>
-											</th>
-										</tr>
-										<tr class="week">
-											<th class="day">пн</th>
-											<th class="day">вт</th>
-											<th class="day">ср</th>
-											<th class="day">чт</th>
-											<th class="day">пт</th>
-											<th class="day">сб</th>
-											<th class="day">вс</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="week" ng-hide="mini && ((week == weeks[0]) || (week == weeks[weeks.length - 1]))" ng-repeat="week in weeks">
-											<td class="day" ng-bind="day.day" ng-class="day.class" ng-click="setDate(day.date)" ng-repeat="day in week"></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+        <div class="control-group">
+          <label class="control-label">Дата оплаты</label>
 
-					<div class="control-group">
-						<label class="control-label">Сумма штрафа</label>
-						<div class="controls">
-							<input type="text" class="input-small" placeholder="кол-во">
-							
-							<select class="select2 input-small">
-								<option>фикс.</option>
-								<option>проценты</option>
-							</select>
-						</div>
-					</div>
+          <div class="controls">
+            <input type="text" class="input-medium" value="04/04/2013 (дефолтное значение, короче. +1 месяц?)">
 
-					<table class="table">
-						<thead>
-							<tr>
-								<th width="5px"></th>
-								<th>Описание</th>
-								<th>Кол-во</th>
-								<th>Цена</th>
-								<th>Общая цена</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><a href="#" class="btn btn-mini btn-red"><i class="icon-minus-sign"></i></a></td>
-								<td>
-									<select  class="select2">
-										<option value="">Верстка</option>
-										<option value="">Хуерстка</option>
-										<option value="">Макет</option>
-										<option value="">Хуекет</option>
-									</select>
-								</td>
-								<td>
-									<input type="text" class="input-mini">
-								</td>
-								<td>
-									<input type="text" class="input-mini">
-								</td>
-								<td>
-									<span class="total">400.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="5"><a href="#" class="btn btn-mini btn-green"><i class="icon-plus-sign"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
-				</form>
-			</div>
-		</div>
-	</div>
-	<script>
-		$( '.select2' ).select2( );
-	</script>
+            <div style="display: none">
+              <table class="lined-calendar">
+                <thead>
+                  <tr class="month" ng-hide="mini">
+                    <th colspan="7">
+                      <h2><a class="color-black"><i class="icon-left-dir"></i></a>{{date | date:'d MMMM
+                        yyyy'}}<a class="color-black"><i class="icon-right-dir"></i></a></h2>
+                    </th>
+                  </tr>
+                  <tr class="week">
+                    <th class="day">пн</th>
+                    <th class="day">вт</th>
+                    <th class="day">ср</th>
+                    <th class="day">чт</th>
+                    <th class="day">пт</th>
+                    <th class="day">сб</th>
+                    <th class="day">вс</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="week" ng-hide="mini && ((week == weeks[0]) || (week == weeks[weeks.length - 1]))" ng-repeat="week in weeks">
+                    <td class="day" ng-bind="day.day" ng-class="day.class" ng-click="setDate(day.date)" ng-repeat="day in week"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="control-group">-->
+          <!--<label class="control-label">Сумма штрафа</label>-->
+
+          <!--<div class="controls">-->
+            <!--<input type="text" class="input-small" placeholder="кол-во">-->
+
+            <!--<select class="select2 input-small">-->
+              <!--<option>фикс.</option>-->
+              <!--<option>проценты</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="5px"></th>
+              <th>Описание</th>
+              <th>Кол-во</th>
+              <th>Цена</th>
+              <th>Общая цена</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#" class="btn btn-mini btn-red"><i class="icon-minus-sign"></i></a></td>
+              <td>
+                <select class="select2">
+                  <option value="">Верстка</option>
+                  <option value="">Хуерстка</option>
+                  <option value="">Макет</option>
+                  <option value="">Хуекет</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="input-mini">
+              </td>
+              <td>
+                <input type="text" class="input-mini">
+              </td>
+              <td>
+                <span class="total">400.00</span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5"><a href="#" class="btn btn-mini btn-green"><i class="icon-plus-sign"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+    $('.select2').select2();
+</script>

@@ -16,6 +16,10 @@ class Bill < ActiveRecord::Base
 
   monetize :amount_cents, as: :amount
 
+  after_save do
+    from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
+  end
+
   def create_payment(payment_method)
     if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "pending"
       params = {
