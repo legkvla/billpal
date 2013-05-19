@@ -54,4 +54,8 @@ class Bill < ActiveRecord::Base
     from_user.balance.update_attribute(:amount_cents, from_user.balance.amount_cents + amount_cents)
     update_attribute(:state, "paid")
   end
+
+  def cancel!
+    update_attribute(:state, "canceled")
+  end
 end
