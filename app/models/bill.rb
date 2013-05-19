@@ -99,7 +99,7 @@ class Bill < ActiveRecord::Base
   end
 
   def expose!
-    update_attribute(:state, "exposed")
+    update_attribute(:state, "exposed6")
   end
 
   def direction user
