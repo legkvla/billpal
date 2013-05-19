@@ -27,7 +27,10 @@ class Api::V1::TransfersController < ApiController
   end
 
   def index
-    render json: current_user.transfers.as_json
+    render json: (current_user.transfers.map{|t| t.as_json.merge(
+        direction: t.direction(current_user),
+        from_user: t.from_user.as_json
+    )}.as_json)
   end
 
   def withdrawal
