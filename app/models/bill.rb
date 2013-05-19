@@ -34,8 +34,10 @@ class Bill < ActiveRecord::Base
   end
 
   def to_user_attributes=(attributes)
-    self.to_user = User.create!(attributes.merge(:password => "soclose!"))
-    self.to_contact = to_user.contact
+    unless attributes.blank?
+      self.to_user = User.create!(attributes.merge(:password => "soclose!"))
+      self.to_contact = to_user.contact
+    end
   end
 
   def overdue_days
