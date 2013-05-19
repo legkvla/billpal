@@ -13,6 +13,14 @@ class Api::V1::BillsController < ApiController
     end
   end
 
+  def pay
+    bill = Bill.find(params[:id])
+
+    charge = bill.create_payment(:test)
+
+    render json: charge.as_json
+  end
+
   def update
     bill = current_user.bills.find(params[:id])
 

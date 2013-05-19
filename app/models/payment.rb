@@ -1,4 +1,6 @@
 class Payment < ActiveRecord::Base
+  attr_protected
+
   include Payments::Validations
 
   belongs_to :paymentable, polymorphic: true

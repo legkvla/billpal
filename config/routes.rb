@@ -45,6 +45,9 @@ Billpal::Application.routes.draw do
       resources :withdrawals
 
       resources :bills do
+        member do
+          post :pay
+        end
         resources :items, namespace: :bills
       end
 
