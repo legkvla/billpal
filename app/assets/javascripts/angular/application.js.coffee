@@ -120,6 +120,10 @@ angular
         templateUrl: '/templates/bill_templates.html'
         controller: 'BillTemplatesController'
 
+      r.when '/dashboard/bill_template_form',
+        templateUrl: '/templates/bill_template_form.html'
+        controller: 'BillTemplatesController'
+
       r.when '/dashboard/bills_drafts',
         templateUrl: '/templates/bills_drafts.html'
         controller: 'BillTemplatesController'

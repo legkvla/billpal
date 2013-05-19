@@ -1,12 +1,10 @@
-	<div class="main-content">
-		<!-- Заголовок -->
 		<div class="container-fluid">
 			<div class="row-fluid">
 
 				<div class="area-top clearfix">
 					<div class="pull-left header">
 						<h3 class="title">
-							<i class="icon-table"></i>
+							<i class="icon-envelope item-x2"></i>
 							Отмененные инвойсы
 						</h3>
 						<h5>
@@ -18,36 +16,30 @@
 					<ul class="inline pull-right sparkline-box">
 
 						<li class="sparkline-row">
-							<h4 class="blue"><span>Orders</span> 847</h4>
+							<h4 class="blue"><span>Вы отменили</span> 847 руб.</h4>
 							
 						</li>
 
 						<li class="sparkline-row">
-							<h4 class="red"><span>Reviews</span> 223</h4>
+							<h4 class="red"><span>Вам отменили</span> 223 руб.</h4>
 						</li>
 
 					</ul>
 				</div>
 			</div>
-		</div>
 
 
-		<%= render "bills_menu" %>
-		
+			<%= render "bills_menu" %>
 
 
-		<div class="row-fluid padded">
 
-			<!-- созданные, но не выставленные инвойсы -->
-			<div class="span12">
-				<div class="box">
-					<div class="box-header"><span class="title">Отмененные инвойсы</span></div>
-					<div class="box-content">
-						<!-- find me in partials/data_tables_custom -->
-
-						<div id="dataTables">
-
-							<table cellpadding="0" cellspacing="0" border="0" class="dTable responsive dataTable">
+			<div class="row-fluid">
+				<!-- созданные, но не выставленные инвойсы -->
+				<div class="span12">
+					<div class="box">
+						<div class="box-header"><span class="title">Отмененные вами инвойсы</span></div>
+						<div class="box-content">
+							<table cellpadding="0" cellspacing="0" border="0" class="table">
 								<thead>
 									<tr>
 										<th><div>ID</div></th>
@@ -81,66 +73,67 @@
 									</tbody>
 								</table>
 								<div class="table-footer"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Первая</a><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Предыдущая</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="DataTables_Table_0_next">Следующая</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="DataTables_Table_0_last">Последняя</a></div></div>
-								<div class="table-footer"><h5 style="float:right;">Итого: <em>30 000 руб</em></h5></div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="row-fluid">
 
+					<!-- созданные, но не выставленные инвойсы -->
+					<div class="span12">
+						<div class="box">
+							<div class="box-header"><span class="title">Выставленные вам инвойсы, которые были отменены</span></div>
+							<div class="box-content">
+								<!-- find me in partials/data_tables_custom -->
 
-			</div>
-			<div class="row-fluid padded">
+								<div id="dataTables">
 
-				<!-- созданные, но не выставленные инвойсы -->
-				<div class="span12">
-					<div class="box">
-						<div class="box-header"><span class="title">Отмененные инвойсы</span></div>
-						<div class="box-content">
-							<!-- find me in partials/data_tables_custom -->
-
-							<div id="dataTables">
-
-								<table cellpadding="0" cellspacing="0" border="0" class="dTable responsive dataTable">
-									<thead>
-										<tr>
-											<th><div>ID</div></th>
-											<th><div>Название</div></th>
-											<th><div>Дата создания</div></th>
-											<th><div>Оплата по плану</div></th>
-											<th><div>Дата отмены</div></th>
-											<th><div>Контакт</div></th>
-											<th><div>Общая сумма</div></th>
-											<th><div></div></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>00001</td>
-											<td>Создание интернет магазина и продвижение его в поисковых системах</td>
-											<td>29\12\13</td>
-											<td>30\12\13 </td>
-											<td>30\12\13 </td>
-											<td>Дмитрий Шульга</td>
-											<td>30000 руб.</td>
-											<td style="text-align:center;">
-												<div class="btn-group">
-													<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
-													<ul class="dropdown-menu">
-														<li><a href="#">Просмотреть</a></li>
-														<li><a href="#">Копировать</a></li>
-													</ul>
-												</div></td>
+									<table cellpadding="0" cellspacing="0" border="0" class="table">
+										<thead>
+											<tr>
+												<th><div>ID</div></th>
+												<th><div>Название</div></th>
+												<th><div>Дата создания</div></th>
+												<th><div>Оплата по плану</div></th>
+												<th><div>Дата отмены</div></th>
+												<th><div>Контакт</div></th>
+												<th><div>Общая сумма</div></th>
+												<th><div></div></th>
 											</tr>
-										</tbody>
-									</table>
-									<div class="table-footer"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Первая</a><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Предыдущая</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="DataTables_Table_0_next">Следующая</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="DataTables_Table_0_last">Последняя</a></div></div>
-									<div class="table-footer"><h5 style="float:right;">Итого: <em>30 000 руб</em></h5></div>
+										</thead>
+										<tbody>
+											<tr>
+												<td>00001</td>
+												<td>Создание интернет магазина и продвижение его в поисковых системах</td>
+												<td>29\12\13</td>
+												<td>30\12\13 </td>
+												<td>30\12\13 </td>
+												<td>Дмитрий Шульга</td>
+												<td>30000 руб.</td>
+												<td style="text-align:center;">
+													<div class="btn-group">
+														<button class="btn btn-mini btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+														<ul class="dropdown-menu">
+															<li><a href="#">Просмотреть</a></li>
+															<li><a href="#">Копировать</a></li>
+														</ul>
+													</div></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="table-footer"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Первая</a><a tabindex="0" class="first paginate_button paginate_button_disabled" id="DataTables_Table_0_first">Предыдущая</a><span><a tabindex="0" class="paginate_active">1</a></span><a tabindex="0" class="next paginate_button paginate_button_disabled" id="DataTables_Table_0_next">Следующая</a><a tabindex="0" class="last paginate_button paginate_button_disabled" id="DataTables_Table_0_last">Последняя</a></div></div>
+										
+									</div>
 								</div>
 							</div>
 						</div>
+
+
 					</div>
-
-
 				</div>
 			</div>
 		</div>
+
+
+

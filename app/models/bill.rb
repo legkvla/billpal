@@ -2,7 +2,7 @@
 
 class Bill < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id
+  attr_accessible :title, :description, :to_user, :amount_cents, :from_contact_id, :items_attributes
 
   belongs_to :to_contact, class_name: 'Contact'
   belongs_to :from_contact, class_name: 'Contact'
@@ -14,14 +14,20 @@ class Bill < ActiveRecord::Base
 
   has_many :items
 
+  accepts_nested_attributes_for :items, reject_if: proc {|attrs| attrs[:title].blank?}, allow_destroy: true
+
   monetize :amount_cents, as: :amount
+
+  validates_presence_of :from_contact_id
+
+  before_save :update_state!
 
   after_save do
     from_user.relationships.build(followed_id: self.to_user_id) if from_user.present? && to_user.present?
   end
 
   def create_payment(payment_method)
-    if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "pending"
+    if self.to_user and self.to_contact and self.amount_cents > 0 and self.state == "exposed"
       params = {
           amount: amount_cents,
           paymentable: self,
@@ -53,5 +59,17 @@ class Bill < ActiveRecord::Base
   def pay!
     from_user.balance.update_attribute(:amount_cents, from_user.balance.amount_cents + amount_cents)
     update_attribute(:state, "paid")
+  end
+
+  def cancel!
+    update_attribute(:state, "canceled")
+  end
+
+  private
+
+  def update_state!
+    if state == "pending" && !to_user.blank? && !to_contact.blank?
+      self.state = "exposed"
+    end
   end
 end
