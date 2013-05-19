@@ -8,6 +8,8 @@ class Withdrawal < ActiveRecord::Base
   as_enum :kind, credit_card: 0, phone: 1, test: 9_999_999
   as_enum :payment_kind, just_gateway: 9_001
 
+  monetize :amount_cents, as: :amount
+
   #TODO: hack but it's fast
   before_save do
     gateway = JustGateway.new(login: Settings.just_gateway.login, secret: Settings.just_gateway.secret)
