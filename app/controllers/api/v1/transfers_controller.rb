@@ -26,6 +26,10 @@ class Api::V1::TransfersController < ApiController
     end
   end
 
+  def index
+    render json: current_user.transfers.as_json
+  end
+
   def withdrawal
     transfer = Transfer.find(params[:id])
   end
