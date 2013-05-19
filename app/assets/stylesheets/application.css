@@ -273,15 +273,24 @@
 	border-radius: 50% !important;
 }
 
-h1, h2, h3, h4, h5, h6, th {
-	font-weight: normal;
-}
-
 .form-normal .control-label {
 	width: 100px;
 	text-align: left;
 }
 
 .form-normal .controls {
-	margin: 0;
+	margin-left: 110px;
+}
+
+.form-balance .control-label {
+	width: 50px;
+	padding-top: 0;
+}
+
+.form-balance .controls {
+	margin-left: 60px;
+}
+
+.form-balance .form-actions {
+	/* padding-left: 115px; */
 }
