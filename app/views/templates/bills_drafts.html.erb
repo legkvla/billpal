@@ -44,7 +44,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="bill in bills | filter:{state:'pending'}">
+             <tr ng-repeat="bill in bills | filter:{state:'pending'}">
                 <td ng-bind="bill.id"></td>
                 <td contenteditable ng-model="bill.title"></td>
                 <td ng-bind="bill.created_at | date"></td>
